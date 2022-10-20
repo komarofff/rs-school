@@ -11,6 +11,7 @@ class Game {
         this.board = ''
         this.isShuffle = true
         this.isMove = true
+        this.isFinishGame = false
         // timer
         this.time = '00:00'
         this.timeCounter = 0
@@ -24,6 +25,7 @@ class Game {
 
         this.xStart = null
         this.YStart = null
+        this.congratulation = document.createElement('div')
 
     }
 
@@ -114,15 +116,19 @@ class Game {
         </div>
         `
         this.body.appendChild(this.gameBoard)
+        this.eventsOnBoard()
 
+    }
+
+    eventsOnBoard() {
         // mobile menu  start
         let openMenu = document.querySelector('.open-mobile-menu')
         let mobileMenu = document.querySelector('.mobile-menu')
         let closeMenu = document.querySelector('.close-mobile-menu')
-        openMenu.addEventListener('click',()=>{
+        openMenu.addEventListener('click', () => {
             mobileMenu.style.cssText = 'transform: translateY(0%);'
         })
-        closeMenu.addEventListener('click',()=>{
+        closeMenu.addEventListener('click', () => {
             mobileMenu.style.cssText = ''
         })
         // mobile menu end
@@ -160,7 +166,7 @@ class Game {
         const newGrid = document.querySelectorAll('.change-tables-size')
         newGrid.forEach(el => {
             el.addEventListener('click', () => {
-                this.stopTime()
+                // this.stopTime()
                 this.buildNumbersArray(Number(el.dataset.grid))
                 this.paintBoard()
             })
@@ -179,6 +185,7 @@ class Game {
         const clickedGameBoard = document.querySelector('.gameBoard')
         clickedGameBoard.addEventListener('mousedown', mouseDown)
         clickedGameBoard.addEventListener('mouseup', mouseUp)
+
         function mouseDown(el) {
             if (context.isMove
                 && (el.target.classList.contains('to-right')
@@ -190,6 +197,7 @@ class Game {
                 document.addEventListener('mousemove', startMove)
             }
         }
+
         function startMove(el) {
             let x = el.pageX
             let y = el.offsetY
@@ -219,6 +227,7 @@ class Game {
             }
 
         }
+
         function mouseUp(el) {
             let x = el.pageX
             let y = el.offsetY
@@ -240,6 +249,7 @@ class Game {
         }
 
         clickedGameBoard.addEventListener('touchstart', touchStart)
+
         function touchStart(el) {
             if (context.isMove
                 && (el.target.classList.contains('to-right')
@@ -251,6 +261,7 @@ class Game {
                 document.addEventListener('touchmove', startMoveTouch)
             }
         }
+
         function startMoveTouch(el) {
             let x = el.changedTouches[0].screenX
             let y = el.changedTouches[0].screenY
@@ -280,8 +291,8 @@ class Game {
             }
 
         }
-        //// mouse events end
 
+        //// mouse events end
     }
 
     moveRight(el) {
@@ -383,7 +394,12 @@ class Game {
     finishGame() {
         this.saveResult()
         this.stopGame()
-        alert(`Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!`)
+        this.congratulation.innerHTML = `<div class="congratulation">Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!</div>`
+        this.body.appendChild(this.congratulation)
+        setTimeout(() => {
+            this.isTimerStart = true
+            this.congratulation.innerHTML = ''
+        }, 5000)
     }
 
     saveGame() {
@@ -410,7 +426,6 @@ class Game {
             timeCounter: this.timeCounter,
             boardSize: this.boardSize
         }
-        console.log('this.gameResults', this.gameResults)
         if (this.gameResults) {
 
             if (this.gameResults.length < 10) {
@@ -425,8 +440,6 @@ class Game {
             this.gameResults.unshift(result)
             localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
         }
-        //alert('save  results to local storage')
-        //this.init()
 
     }
 

@@ -11,6 +11,7 @@ class Game {
         this.board = ''
         this.isShuffle = true
         this.isMove = true
+        this.isFinishGame = false
         // timer
         this.time = '00:00'
         this.timeCounter = 0
@@ -115,41 +116,50 @@ class Game {
         </div>
         `
         this.body.appendChild(this.gameBoard)
+        this.eventsOnBoard()
 
+    }
+
+    eventsOnBoard() {
         // mobile menu  start
         let openMenu = document.querySelector('.open-mobile-menu')
         let mobileMenu = document.querySelector('.mobile-menu')
         let closeMenu = document.querySelector('.close-mobile-menu')
-        openMenu.addEventListener('click',()=>{
+        openMenu.addEventListener('click', () => {
             mobileMenu.style.cssText = 'transform: translateY(0%);'
         })
-        closeMenu.addEventListener('click',()=>{
+        closeMenu.addEventListener('click', () => {
             mobileMenu.style.cssText = ''
         })
         // mobile menu end
 
+        // shuffle numbers
         document.querySelector('.shuffle-start-game').addEventListener('click', () => {
             this.startShuffleGame()
         })
+        //start saved game
         if (document.querySelector('.start-saved-game')) {
             document.querySelector('.start-saved-game').addEventListener('click', () => {
                 this.startSavedGame()
             })
         }
+        //stop game
         document.querySelector('.stop-game').addEventListener('click', () => {
             this.stopGame()
         })
-
+        //save game
         document.querySelector('.save-game').addEventListener('click', () => {
             this.saveGame()
         })
+        //show results
         document.querySelector('.show-results').addEventListener('click', () => {
             this.showResults()
         })
         // document.querySelector('.save-results').addEventListener('click', () => {
         //     this.saveResult()
         // })
-        if (document.querySelector('.start-saved-game')) {
+        // delete saved game
+        if (document.querySelector('.delete-saved-game')) {
             document.querySelector('.delete-saved-game').addEventListener('click', () => {
                 localStorage.removeItem('SavedGames')
                 this.startSavedGameButtton = false
@@ -157,16 +167,16 @@ class Game {
                 this.paintBoard()
             })
         }
-
+        //change board size
         const newGrid = document.querySelectorAll('.change-tables-size')
         newGrid.forEach(el => {
             el.addEventListener('click', () => {
-               // this.stopTime()
+                // this.stopTime()
                 this.buildNumbersArray(Number(el.dataset.grid))
                 this.paintBoard()
             })
         })
-
+        // on/off sound
         const soundButton = document.querySelector('.sound-toggle')
         soundButton.addEventListener('click', () => {
             this.isSound ? soundButton.innerHTML = 'Sound ON' : soundButton.innerHTML = 'Sound OFF'
@@ -175,22 +185,19 @@ class Game {
         document.querySelector('.gameBoard').innerHTML = this.board
 
         // mouse events start
-
         let context = this
         const clickedGameBoard = document.querySelector('.gameBoard')
         clickedGameBoard.addEventListener('mousedown', mouseDown)
         clickedGameBoard.addEventListener('mouseup', mouseUp)
+
         function mouseDown(el) {
-            if (context.isMove
-                && (el.target.classList.contains('to-right')
-                    || el.target.classList.contains('to-left')
-                    || el.target.classList.contains('to-up')
-                    || el.target.classList.contains('to-down'))) {
+            if (context.isMove && (el.target.classList.contains('to-right') || el.target.classList.contains('to-left') || el.target.classList.contains('to-up') || el.target.classList.contains('to-down'))) {
                 context.xStart = el.pageX
                 context.yStart = el.offsetY
                 document.addEventListener('mousemove', startMove)
             }
         }
+
         function startMove(el) {
             let x = el.pageX
             let y = el.offsetY
@@ -220,6 +227,7 @@ class Game {
             }
 
         }
+
         function mouseUp(el) {
             let x = el.pageX
             let y = el.offsetY
@@ -241,17 +249,15 @@ class Game {
         }
 
         clickedGameBoard.addEventListener('touchstart', touchStart)
+
         function touchStart(el) {
-            if (context.isMove
-                && (el.target.classList.contains('to-right')
-                    || el.target.classList.contains('to-left')
-                    || el.target.classList.contains('to-up')
-                    || el.target.classList.contains('to-down'))) {
+            if (context.isMove && (el.target.classList.contains('to-right') || el.target.classList.contains('to-left') || el.target.classList.contains('to-up') || el.target.classList.contains('to-down'))) {
                 context.xStart = el.changedTouches[0].screenX
                 context.yStart = el.changedTouches[0].screenY
                 document.addEventListener('touchmove', startMoveTouch)
             }
         }
+
         function startMoveTouch(el) {
             let x = el.changedTouches[0].screenX
             let y = el.changedTouches[0].screenY
@@ -282,7 +288,6 @@ class Game {
 
         }
         //// mouse events end
-
     }
 
     moveRight(el) {
@@ -386,10 +391,18 @@ class Game {
         this.stopGame()
         this.congratulation.innerHTML = `<div class="congratulation">Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!</div>`
         this.body.appendChild(this.congratulation)
-        setTimeout(()=>{
+        setTimeout(() => {
             this.isTimerStart = true
             this.congratulation.innerHTML = ''
-        },5000)
+            //this.startShuffleGame()
+            this.changeTablesGrid(this.boardSize)
+            this.paintBoard()
+            this.time = '00:00'
+            this.moves = 0
+            this.timeCounter = 0
+            document.querySelector('.moves').innerHTML = this.moves
+            document.querySelector('.time').innerHTML = this.time
+        }, 5000)
     }
 
     saveGame() {
@@ -511,11 +524,8 @@ class Game {
         let hours = Math.floor(this.timeCounter / 60 / 60)
         let minutes = Math.floor(this.timeCounter / 60) - (hours * 60)
         let seconds = this.timeCounter % 60
-        this.time = [
-            //hours.toString().padStart(2, '0'),
-            minutes.toString().padStart(2, '0'),
-            seconds.toString().padStart(2, '0')
-        ].join(':')
+        this.time = [//hours.toString().padStart(2, '0'),
+            minutes.toString().padStart(2, '0'), seconds.toString().padStart(2, '0')].join(':')
         document.querySelector('.time').textContent = this.time
     }
 
