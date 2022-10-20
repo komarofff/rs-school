@@ -389,7 +389,7 @@ class Game {
         setTimeout(()=>{
             congratulation.innerHTML = ''
             this.body.remove(congratulation)
-            this.init()
+            //this.init()
         },5000)
     }
 
