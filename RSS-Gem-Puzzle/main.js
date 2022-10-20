@@ -24,6 +24,7 @@ class Game {
 
         this.xStart = null
         this.YStart = null
+        this.congratulation = document.createElement('div')
 
     }
 
@@ -160,7 +161,7 @@ class Game {
         const newGrid = document.querySelectorAll('.change-tables-size')
         newGrid.forEach(el => {
             el.addEventListener('click', () => {
-                this.stopTime()
+               // this.stopTime()
                 this.buildNumbersArray(Number(el.dataset.grid))
                 this.paintBoard()
             })
@@ -383,13 +384,11 @@ class Game {
     finishGame() {
         this.saveResult()
         this.stopGame()
-        let congratulation = document.createElement('div')
-        congratulation.innerHTML = `<div class="congratulation">Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!</div>`
-        this.body.append(congratulation)
+        this.congratulation.innerHTML = `<div class="congratulation">Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!</div>`
+        this.body.appendChild(this.congratulation)
         setTimeout(()=>{
-            congratulation.innerHTML = ''
-            this.body.remove(congratulation)
-            //this.init()
+            this.isTimerStart = true
+            this.congratulation.innerHTML = ''
         },5000)
     }
 
@@ -417,7 +416,6 @@ class Game {
             timeCounter: this.timeCounter,
             boardSize: this.boardSize
         }
-        console.log('this.gameResults', this.gameResults)
         if (this.gameResults) {
 
             if (this.gameResults.length < 10) {
@@ -432,8 +430,6 @@ class Game {
             this.gameResults.unshift(result)
             localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
         }
-        //alert('save  results to local storage')
-        //this.init()
 
     }
 
