@@ -30,7 +30,13 @@ body{
     }
 }
 
+.grid-2-column {
+    display: grid;
+    grid-template-columns: repeat(2, 25vh);
+    grid-template-rows: repeat(2, 25vh);
+    grid-gap: 5px;
 
+}
 .grid-3-column {
     display: grid;
     grid-template-columns: repeat(3, 15vh);

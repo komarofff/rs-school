@@ -120,7 +120,6 @@ class Game {
         this.eventsOnBoard()
 
 
-
     }
 
     eventsOnBoard() {
@@ -397,9 +396,9 @@ class Game {
         this.boardSize = storage[0].boardSize
         this.paintBoard()
 
-            this.isMove = true
-            document.querySelector('.stop-game').innerHTML = 'Stop'
-            this.isStopped = false
+        this.isMove = true
+        document.querySelector('.stop-game').innerHTML = 'Stop'
+        this.isStopped = false
 
 
     }
@@ -416,9 +415,9 @@ class Game {
         this.buildNumbersArray(this.boardSize)
         this.paintBoard()
 
-            this.isMove = true
-            document.querySelector('.stop-game').innerHTML = 'Stop'
-            this.isStopped = false
+        this.isMove = true
+        document.querySelector('.stop-game').innerHTML = 'Stop'
+        this.isStopped = false
 
 
     }
@@ -448,7 +447,6 @@ class Game {
         }, 5000)
     }
 
-
     saveGame() {
         this.saveMyGame = []
         let result = {
@@ -474,9 +472,9 @@ class Game {
             boardSize: this.boardSize
         }
         if (this.gameResults.length > 0) {
-           let maxInArray = this.gameResults.sort((a,b)=> a.moves -b.moves)
+            let maxInArray = this.gameResults.sort((a, b) => a.moves - b.moves)
 
-            if(maxInArray[maxInArray.length-1].moves < this.moves) {
+            if (maxInArray[0].moves > this.moves) {
 
                 if (this.gameResults.length < 10) {
                     this.gameResults.unshift(result)
@@ -532,18 +530,18 @@ class Game {
             // this.boardSize = storage[0].boardSize
         }
         //else {
-            this.boardSize = newSize
-            let arr = []
-            for (let i = 1; i < newSize * newSize + 1; i++) {
-                if (i < newSize * newSize) {
-                    arr.push(i)
-                }
-                if (i === newSize * newSize) {
-                    arr.push('drop_zone')
-                }
+        this.boardSize = newSize
+        let arr = []
+        for (let i = 1; i < newSize * newSize + 1; i++) {
+            if (i < newSize * newSize) {
+                arr.push(i)
             }
-            this.numbersArr = this.shuffleArray(arr)
-            //console.log('this.numbersArr',this.numbersArr)
+            if (i === newSize * newSize) {
+                arr.push('drop_zone')
+            }
+        }
+        this.numbersArr = this.shuffleArray(arr)
+        //console.log('this.numbersArr',this.numbersArr)
         //}
 
     }
