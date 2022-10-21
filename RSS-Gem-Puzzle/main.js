@@ -67,8 +67,8 @@ class Game {
         this.makeBoardNumbers()
 
         if (this.startSavedGameButtton) {
-            this.savedGameButton = '<div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-primary start-saved-game w-100 w-md-unset text-nowrap">Start saved game</button></div>'
-            this.deleteAllResults = '<div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-danger delete-saved-game w-100 w-md-unset text-nowrap">Delete saved game</button></div>'
+            this.savedGameButton = '<div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="fw-normal btn btn-primary start-saved-game w-100 w-md-unset text-nowrap">Start saved game</button></div>'
+            this.deleteAllResults = '<div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="fw-normal btn btn-danger delete-saved-game w-100 w-md-unset text-nowrap">Delete saved game</button></div>'
         } else {
             this.savedGameButton = ''
             this.deleteAllResults = ''
@@ -78,17 +78,17 @@ class Game {
         this.gameBoard.setAttribute('id', 'gameBoard')
         this.gameBoard.innerHTML = `
         <div class="container mx-auto">
-         <div class="d-flex  justify-content-center flex-lg-nowrap flex-wrap mobile-menu pt-3 pt-md-1">
+         <div class="d-flex  justify-content-center flex-md-nowrap flex-wrap mobile-menu pt-3 pt-md-1">
          <p class="close-mobile-menu d-md-none">X</p>
-          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success shuffle-start-game w-100  w-md-unset text-nowrap">Shuffle and Start</button></div>
+          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="fw-normal btn btn-success shuffle-start-game w-100  w-md-unset text-nowrap">Shuffle and Start</button></div>
          ${this.savedGameButton}
-          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Play</button></div>
-          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
-          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
+          
+          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="fw-normal btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
+          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="fw-normal btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
 <!--         <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
           ${this.deleteAllResults}
          </div>
-         <div class="d-flex justify-content-center align-items-center position-relative">
+         <div class="d-flex w-fit-content justify-content-evenly align-items-center position-relative mx-auto">
          <p class="open-mobile-menu d-md-none">
            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -97,6 +97,7 @@ class Game {
             <line x1="4" y1="18" x2="20" y2="18"></line>
            </svg>
           </p>
+          <div class=" mt-1  me-4"><button class="fw-normal btn btn-warning stop-game w-100  w-md-unset text-nowrap py-1 px-4">Play</button></div>
           <div class="fs-6 fw-normal me-3">Moves:<span class="ms-2 moves fs-5 fw-bolder"> ${this.moves}</span></div>
           <div class="fs-6 fw-normal">Time:<span class="ms-2 time fs-5 fw-bolder"> ${this.time}</span></div>            
          </div>
