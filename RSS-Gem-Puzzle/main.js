@@ -174,6 +174,7 @@ class Game {
         document.querySelector('.show-results').addEventListener('click', () => {
             this.showResults()
         })
+        // save results ( only for development mode )
         // document.querySelector('.save-results').addEventListener('click', () => {
         //     this.saveResult()
         // })
@@ -474,8 +475,16 @@ class Game {
         if (this.gameResults.length > 0) {
             let maxInArray = this.gameResults.sort((a, b) => a.moves - b.moves)
 
-            if (maxInArray[0].moves > this.moves) {
-
+            if (maxInArray[0].moves >= this.moves && maxInArray[0].timeCounter > this.timeCounter && maxInArray[0].boardSize === this.boardSize) {
+                if (this.gameResults.length < 10) {
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                } else {
+                    this.gameResults.pop()
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                }
+            }else if ( maxInArray[0].boardSize !== this.boardSize) {
                 if (this.gameResults.length < 10) {
                     this.gameResults.unshift(result)
                     localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
@@ -499,7 +508,7 @@ class Game {
         modal.innerHTML += '<h3 class="text-center fw-bold mb-3">Your results:</h3>'
         let data = JSON.parse(localStorage.getItem('GameResults'))
         if (data) {
-            //data = data.sort((a, b) => a.moves - b.moves)
+            data = data.sort((a, b) => a.boardSize - b.boardSize && a.moves - b.moves)
             let message = ``
             for (let i = 0; i < data.length; i++) {
                 message += `<p> ${i + 1}) <span class="ms-1 me-3">Moves - ${data[i].moves}</span> <span> Time: ${data[i].time}</span> <span class="ms-3">Board  ${data[i].boardSize}x${data[i].boardSize}</span> </p>`
