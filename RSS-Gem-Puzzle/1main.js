@@ -168,6 +168,7 @@ class Game {
         })
         //save game
         document.querySelector('.save-game').addEventListener('click', () => {
+            console.log('press save')
             this.saveGame()
         })
         //show results
@@ -409,12 +410,7 @@ class Game {
 
         this.buildNumbersArray(this.boardSize)
         this.paintBoard()
-        if (this.isStopped === true) {
-            this.isMove = true
-            document.querySelector('.stop-game').innerHTML = 'Stop'
-            this.isStopped = false
 
-        }
     }
 
     stopGame() {
@@ -515,25 +511,19 @@ class Game {
         let storage = JSON.parse(localStorage.getItem('SavedGames'))
         if (storage) {
             this.startSavedGameButtton = true
-            this.numbersArr = storage[0].numbers
-            this.time = storage[0].time
-            this.moves = storage[0].moves
-            this.timeCounter = storage[0].timeCounter
-            this.boardSize = storage[0].boardSize
-        } else {
-            this.boardSize = newSize
-            let arr = []
-            for (let i = 1; i < newSize * newSize + 1; i++) {
-                if (i < newSize * newSize) {
-                    arr.push(i)
-                }
-                if (i === newSize * newSize) {
-                    arr.push('drop_zone')
-                }
-            }
-            this.numbersArr = this.shuffleArray(arr)
-            //console.log('this.numbersArr',this.numbersArr)
         }
+
+        this.boardSize = newSize
+        let arr = []
+        for (let i = 1; i < newSize * newSize + 1; i++) {
+            if (i < newSize * newSize) {
+                arr.push(i)
+            }
+            if (i === newSize * newSize) {
+                arr.push('drop_zone')
+            }
+        }
+        this.numbersArr = this.shuffleArray(arr)
 
     }
 
