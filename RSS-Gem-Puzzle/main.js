@@ -63,8 +63,8 @@ class Game {
         this.makeBoardNumbers()
 
         if (this.startSavedGameButtton) {
-            this.savedGameButton = '<div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-primary start-saved-game w-100 w-md-unset text-nowrap">Start saved game</button></div>'
-            this.deleteAllResults = '<div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-danger delete-saved-game w-100 w-md-unset text-nowrap">Delete saved game</button></div>'
+            this.savedGameButton = '<div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-primary start-saved-game w-100 w-md-unset text-nowrap">Start saved game</button></div>'
+            this.deleteAllResults = '<div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-danger delete-saved-game w-100 w-md-unset text-nowrap">Delete saved game</button></div>'
         } else {
             this.savedGameButton = ''
             this.deleteAllResults = ''
@@ -73,14 +73,14 @@ class Game {
         this.gameBoard = document.createElement('div')
         this.gameBoard.setAttribute('id', 'gameBoard')
         this.gameBoard.innerHTML = `
-        <div class="container mt-1 mx-auto">
-         <div class="d-flex my-2 justify-content-center flex-md-nowrap flex-wrap mobile-menu pt-3 pt-md-none">
+        <div class="container mx-auto">
+         <div class="d-flex  justify-content-center flex-lg-nowrap flex-wrap mobile-menu pt-3 pt-md-1">
          <p class="close-mobile-menu d-md-none">X</p>
-          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-success shuffle-start-game w-100  w-md-unset text-nowrap">Shuffle and Start</button></div>
+          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success shuffle-start-game w-100  w-md-unset text-nowrap">Shuffle and Start</button></div>
          ${this.savedGameButton}
-          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Stop</button></div>
-          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
-          <div class="mx-2 mt-3 mt-md-0 w-100  w-md-unset"><button class="btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
+          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Stop</button></div>
+          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
+          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
 <!--          <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
           ${this.deleteAllResults}
          </div>
@@ -93,18 +93,18 @@ class Game {
             <line x1="4" y1="18" x2="20" y2="18"></line>
            </svg>
           </p>
-          <div class="fs-6 fw-semibold me-3">Moves:<span class="ms-2 moves fs-5 fw-bolder"> ${this.moves}</span></div>
-          <div class="fs-6 fw-semibold">Time:<span class="ms-2 time fs-5 fw-bolder"> ${this.time}</span></div>            
+          <div class="fs-6 fw-normal me-3">Moves:<span class="ms-2 moves fs-5 fw-bolder"> ${this.moves}</span></div>
+          <div class="fs-6 fw-normal">Time:<span class="ms-2 time fs-5 fw-bolder"> ${this.time}</span></div>            
          </div>
-         <div class="d-flex w-fit-content justify-content-center align-items-center mx-auto my-3">
+         <div class="d-flex w-fit-content justify-content-center align-items-center mx-auto my-2">
             <div class="display-grid grid-${this.boardSize}-column gameBoard ">
                         
             </div>
          </div>
-         <div class="row my-2">
-            <p class="col-12 text-center mb-0"><span class="fw-semibold">Frame size:</span>  ${this.boardSize}x${this.boardSize}</p>
-            <p class="col-12 d-flex align-items-center justify-content-center mb-0">
-            <span class="fw-semibold me-2 me-md-3 text-nowrap">Other sizes:</span>  
+         <div class="my-2 w-fit-content mx-auto bottom-info">
+            <p class="text-center mb-0"><span class="fw-normal">Frame size:</span>  ${this.boardSize}x${this.boardSize}</p>
+            <p class="d-flex align-items-center justify-content-center mb-0">
+            <span class="fw-normal me-2 me-md-3 text-nowrap">Other sizes:</span>  
             <a class="change-tables-size me-2"  href="#" data-grid="3">3x3</a> 
             <a class="change-tables-size me-2"  href="#" data-grid="4">4x4</a> 
             <a class="change-tables-size me-2"  href="#" data-grid="5">5x5</a> 
@@ -287,6 +287,7 @@ class Game {
             }
 
         }
+
         //// mouse events end
     }
 
@@ -404,6 +405,7 @@ class Game {
             document.querySelector('.time').innerHTML = this.time
         }, 5000)
     }
+
 
     saveGame() {
         this.saveMyGame = []
