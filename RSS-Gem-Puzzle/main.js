@@ -199,6 +199,10 @@ class Game {
                 // this.stopTime()
                 this.buildNumbersArray(Number(el.dataset.grid))
                 this.paintBoard()
+                this.isMove = false
+                clearInterval(this.timer)
+                document.querySelector('.stop-game').innerHTML = 'Play'
+                this.isStopped = true
             })
         })
         // on/off sound

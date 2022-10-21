@@ -10,8 +10,9 @@ class Game {
         this.numbersArr = []
         this.board = ''
         this.isShuffle = true
-        this.isMove = true
+        this.isMove = false
         this.isFinishGame = false
+        this.isStopped = true
         // timer
         this.time = '00:00'
         this.timeCounter = 0
@@ -78,10 +79,10 @@ class Game {
          <p class="close-mobile-menu d-md-none">X</p>
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success shuffle-start-game w-100  w-md-unset text-nowrap">Shuffle and Start</button></div>
          ${this.savedGameButton}
-          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Stop</button></div>
+          <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Play</button></div>
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
-<!--          <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
+<!--         <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
           ${this.deleteAllResults}
          </div>
          <div class="d-flex justify-content-center align-items-center position-relative">
@@ -118,6 +119,7 @@ class Game {
         this.body.appendChild(this.gameBoard)
         this.eventsOnBoard()
 
+
     }
 
     eventsOnBoard() {
@@ -145,7 +147,24 @@ class Game {
         }
         //stop game
         document.querySelector('.stop-game').addEventListener('click', () => {
-            this.stopGame()
+
+            if (this.isStopped === true) {
+                this.isMove = true
+                document.querySelector('.stop-game').innerHTML = 'Stop'
+                this.isStopped = false
+                this.isTimerStart = true
+                clearInterval(this.timer)
+                this.timer = setInterval(() => {
+                    this.timerStart.call(this)
+                }, 1000)
+
+            } else {
+                this.isMove = false
+                document.querySelector('.stop-game').innerHTML = 'Play'
+                this.isStopped = true
+                this.stopGame()
+            }
+
         })
         //save game
         document.querySelector('.save-game').addEventListener('click', () => {
@@ -155,6 +174,7 @@ class Game {
         document.querySelector('.show-results').addEventListener('click', () => {
             this.showResults()
         })
+        // save results ( only for development mode )
         // document.querySelector('.save-results').addEventListener('click', () => {
         //     this.saveResult()
         // })
@@ -165,6 +185,11 @@ class Game {
                 this.startSavedGameButtton = false
                 this.buildNumbersArray(this.COMMON_GRID)
                 this.paintBoard()
+
+                this.isMove = false
+                clearInterval(this.timer)
+                document.querySelector('.stop-game').innerHTML = 'Play'
+                this.isStopped = true
             })
         }
         //change board size
@@ -357,13 +382,25 @@ class Game {
     }
 
     startSavedGame() {
+
         clearInterval(this.timer)
         this.timer = setInterval(() => {
             this.timerStart.call(this)
         }, 1000)
+        let storage = JSON.parse(localStorage.getItem('SavedGames'))
 
-        this.changeTablesGrid(this.boardSize)
+        this.startSavedGameButtton = true
+        this.numbersArr = storage[0].numbers
+        this.time = storage[0].time
+        this.moves = storage[0].moves
+        this.timeCounter = storage[0].timeCounter
+        this.boardSize = storage[0].boardSize
         this.paintBoard()
+
+        this.isMove = true
+        document.querySelector('.stop-game').innerHTML = 'Stop'
+        this.isStopped = false
+
 
     }
 
@@ -378,6 +415,11 @@ class Game {
 
         this.buildNumbersArray(this.boardSize)
         this.paintBoard()
+
+        this.isMove = true
+        document.querySelector('.stop-game').innerHTML = 'Stop'
+        this.isStopped = false
+
 
     }
 
@@ -406,7 +448,6 @@ class Game {
         }, 5000)
     }
 
-
     saveGame() {
         this.saveMyGame = []
         let result = {
@@ -418,7 +459,7 @@ class Game {
         }
         this.saveMyGame.push(result)
         localStorage.setItem('SavedGames', JSON.stringify(this.saveMyGame))
-        alert('save  game to local storage')
+        //alert('save  game to local storage')
         this.init()
 
     }
@@ -431,15 +472,27 @@ class Game {
             timeCounter: this.timeCounter,
             boardSize: this.boardSize
         }
-        if (this.gameResults) {
+        if (this.gameResults.length > 0) {
+            let maxInArray = this.gameResults.sort((a, b) => a.moves - b.moves)
 
-            if (this.gameResults.length < 10) {
-                this.gameResults.unshift(result)
-                localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
-            } else {
-                this.gameResults.pop()
-                this.gameResults.unshift(result)
-                localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+            if (maxInArray[0].moves >= this.moves && maxInArray[0].timeCounter > this.timeCounter && maxInArray[0].boardSize === this.boardSize) {
+                if (this.gameResults.length < 10) {
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                } else {
+                    this.gameResults.pop()
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                }
+            }else if ( maxInArray[0].boardSize !== this.boardSize) {
+                if (this.gameResults.length < 10) {
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                } else {
+                    this.gameResults.pop()
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                }
             }
         } else {
             this.gameResults.unshift(result)
@@ -455,7 +508,7 @@ class Game {
         modal.innerHTML += '<h3 class="text-center fw-bold mb-3">Your results:</h3>'
         let data = JSON.parse(localStorage.getItem('GameResults'))
         if (data) {
-            data = data.sort((a, b) => a.moves - b.moves)
+            data = data.sort((a, b) => a.boardSize - b.boardSize && a.moves - b.moves)
             let message = ``
             for (let i = 0; i < data.length; i++) {
                 message += `<p> ${i + 1}) <span class="ms-1 me-3">Moves - ${data[i].moves}</span> <span> Time: ${data[i].time}</span> <span class="ms-3">Board  ${data[i].boardSize}x${data[i].boardSize}</span> </p>`
@@ -479,25 +532,27 @@ class Game {
         let storage = JSON.parse(localStorage.getItem('SavedGames'))
         if (storage) {
             this.startSavedGameButtton = true
-            this.numbersArr = storage[0].numbers
-            this.time = storage[0].time
-            this.moves = storage[0].moves
-            this.timeCounter = storage[0].timeCounter
-            this.boardSize = storage[0].boardSize
-        } else {
-            this.boardSize = newSize
-            let arr = []
-            for (let i = 1; i < newSize * newSize + 1; i++) {
-                if (i < newSize * newSize) {
-                    arr.push(i)
-                }
-                if (i === newSize * newSize) {
-                    arr.push('drop_zone')
-                }
-            }
-            this.numbersArr = this.shuffleArray(arr)
-            //console.log('this.numbersArr',this.numbersArr)
+            // this.numbersArr = storage[0].numbers
+            // this.time = storage[0].time
+            // this.moves = storage[0].moves
+            // this.timeCounter = storage[0].timeCounter
+            // this.boardSize = storage[0].boardSize
         }
+        //else {
+        this.boardSize = newSize
+        let arr = []
+        for (let i = 1; i < newSize * newSize + 1; i++) {
+            if (i < newSize * newSize) {
+                arr.push(i)
+            }
+            if (i === newSize * newSize) {
+                arr.push('drop_zone')
+            }
+        }
+        this.numbersArr = this.shuffleArray(arr)
+        //console.log('this.numbersArr',this.numbersArr)
+        //}
+
     }
 
     buildNumbersArray(newSize) {
