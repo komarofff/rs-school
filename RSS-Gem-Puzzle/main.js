@@ -82,7 +82,7 @@ class Game {
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-secondary stop-game w-100  w-md-unset text-nowrap">Play</button></div>
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success save-game w-100  w-md-unset text-nowrap">Save</button></div>
           <div class="mx-2 mt-3 mt-lg-0 w-100  w-md-unset"><button class="fw-normal btn btn-success show-results w-100  w-md-unset text-nowrap">Results</button></div>
-<!--          <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
+<!--         <div class="mx-2"><button class="btn btn-success save-results" ">save Results</button></div>-->
           ${this.deleteAllResults}
          </div>
          <div class="d-flex justify-content-center align-items-center position-relative">
@@ -154,6 +154,7 @@ class Game {
                 document.querySelector('.stop-game').innerHTML = 'Stop'
                 this.isStopped = false
                 this.isTimerStart = true
+                clearInterval(this.timer)
                 this.timer = setInterval(() => {
                     this.timerStart.call(this)
                 }, 1000)
@@ -184,6 +185,11 @@ class Game {
                 this.startSavedGameButtton = false
                 this.buildNumbersArray(this.COMMON_GRID)
                 this.paintBoard()
+
+                this.isMove = false
+                clearInterval(this.timer)
+                document.querySelector('.stop-game').innerHTML = 'Play'
+                this.isStopped = true
             })
         }
         //change board size
@@ -390,12 +396,12 @@ class Game {
         this.timeCounter = storage[0].timeCounter
         this.boardSize = storage[0].boardSize
         this.paintBoard()
-        if (this.isStopped === true) {
+
             this.isMove = true
             document.querySelector('.stop-game').innerHTML = 'Stop'
             this.isStopped = false
 
-        }
+
     }
 
     startShuffleGame() {
@@ -409,12 +415,12 @@ class Game {
 
         this.buildNumbersArray(this.boardSize)
         this.paintBoard()
-        if (this.isStopped === true) {
+
             this.isMove = true
             document.querySelector('.stop-game').innerHTML = 'Stop'
             this.isStopped = false
 
-        }
+
     }
 
     stopGame() {
@@ -467,15 +473,19 @@ class Game {
             timeCounter: this.timeCounter,
             boardSize: this.boardSize
         }
-        if (this.gameResults) {
+        if (this.gameResults.length > 0) {
+           let maxInArray = this.gameResults.sort((a,b)=> a.moves -b.moves)
 
-            if (this.gameResults.length < 10) {
-                this.gameResults.unshift(result)
-                localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
-            } else {
-                this.gameResults.pop()
-                this.gameResults.unshift(result)
-                localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+            if(maxInArray[maxInArray.length-1].moves < this.moves) {
+
+                if (this.gameResults.length < 10) {
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                } else {
+                    this.gameResults.pop()
+                    this.gameResults.unshift(result)
+                    localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
+                }
             }
         } else {
             this.gameResults.unshift(result)
@@ -491,7 +501,7 @@ class Game {
         modal.innerHTML += '<h3 class="text-center fw-bold mb-3">Your results:</h3>'
         let data = JSON.parse(localStorage.getItem('GameResults'))
         if (data) {
-            data = data.sort((a, b) => a.moves - b.moves)
+            //data = data.sort((a, b) => a.moves - b.moves)
             let message = ``
             for (let i = 0; i < data.length; i++) {
                 message += `<p> ${i + 1}) <span class="ms-1 me-3">Moves - ${data[i].moves}</span> <span> Time: ${data[i].time}</span> <span class="ms-3">Board  ${data[i].boardSize}x${data[i].boardSize}</span> </p>`
@@ -515,12 +525,13 @@ class Game {
         let storage = JSON.parse(localStorage.getItem('SavedGames'))
         if (storage) {
             this.startSavedGameButtton = true
-            this.numbersArr = storage[0].numbers
-            this.time = storage[0].time
-            this.moves = storage[0].moves
-            this.timeCounter = storage[0].timeCounter
-            this.boardSize = storage[0].boardSize
-        } else {
+            // this.numbersArr = storage[0].numbers
+            // this.time = storage[0].time
+            // this.moves = storage[0].moves
+            // this.timeCounter = storage[0].timeCounter
+            // this.boardSize = storage[0].boardSize
+        }
+        //else {
             this.boardSize = newSize
             let arr = []
             for (let i = 1; i < newSize * newSize + 1; i++) {
@@ -533,7 +544,7 @@ class Game {
             }
             this.numbersArr = this.shuffleArray(arr)
             //console.log('this.numbersArr',this.numbersArr)
-        }
+        //}
 
     }
 
