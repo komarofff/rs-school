@@ -1,5 +1,6 @@
 class Game {
     constructor() {
+        this.isFirstStart = true
         this.body = document.querySelector('body')
         this.gameBoard = ''
         this.gameResults = JSON.parse(localStorage.getItem('GameResults')) || []
@@ -31,8 +32,10 @@ class Game {
     }
 
     init() {
+
         this.changeTablesGrid(this.boardSize)
         this.paintBoard()
+        this.isFirstStart = false
     }
 
     makeBoardNumbers() {
@@ -463,9 +466,11 @@ class Game {
         }
         this.saveMyGame.push(result)
         localStorage.setItem('SavedGames', JSON.stringify(this.saveMyGame))
-        //alert('save  game to local storage')
-        this.init()
-
+            this.init()
+        this.isMove = false
+        document.querySelector('.stop-game').innerHTML = 'Play'
+        this.isStopped = true
+        this.stopGame()
     }
 
     saveResult() {
@@ -534,15 +539,19 @@ class Game {
 
     changeTablesGrid(newSize) {
         let storage = JSON.parse(localStorage.getItem('SavedGames'))
-        if (storage) {
+        if (storage ) {
             this.startSavedGameButtton = true
-            // this.numbersArr = storage[0].numbers
-            // this.time = storage[0].time
-            // this.moves = storage[0].moves
-            // this.timeCounter = storage[0].timeCounter
-            // this.boardSize = storage[0].boardSize
+
         }
-        //else {
+        if(!this.isFirstStart){
+                this.numbersArr = storage[0].numbers
+                this.time = storage[0].time
+                this.moves = storage[0].moves
+                this.timeCounter = storage[0].timeCounter
+                this.boardSize = storage[0].boardSize
+
+        }
+        else {
         this.boardSize = newSize
         let arr = []
         for (let i = 1; i < newSize * newSize + 1; i++) {
@@ -554,8 +563,7 @@ class Game {
             }
         }
         this.numbersArr = this.shuffleArray(arr)
-        //console.log('this.numbersArr',this.numbersArr)
-        //}
+        }
 
     }
 
