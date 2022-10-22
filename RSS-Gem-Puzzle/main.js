@@ -532,12 +532,13 @@ class Game {
     }
 
     changeTablesGrid(newSize) {
-        let storage = JSON.parse(localStorage.getItem('SavedGames'))
-        if (storage) {
+        let storage = localStorage.getItem('SavedGames')
+        if (storage){
             this.startSavedGameButtton = true
 
         }
         if (!this.isFirstStart && storage) {
+            storage = JSON.parse(localStorage.getItem('SavedGames'))
             this.numbersArr = storage[0].numbers
             this.time = storage[0].time
             this.moves = storage[0].moves
