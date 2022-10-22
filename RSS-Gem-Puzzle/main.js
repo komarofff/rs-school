@@ -527,65 +527,66 @@ class Game {
     }
 
     shuffleArray(arr) {
-        let count = this.boardSize
+        let boardSize = this.boardSize
         let result = 0
         let sum = 0
-        let array = []
+        let resultArray = []
 
-        checkSolvability()
-         function checkSolvability() {
-            while (result == 0) {
+            while (result === 0) {
                 shuffle()
-                for (let i = 0; i < count; i++) {
-                    if (i != 0) {
-                        for (let j = i + 1; j <= count; j++) {
-                            if (array[i] > array[j] && array[j] != 0) {
+                for (let i = 0; i < boardSize; i++) {
+                    if (i !== 0) {
+                        for (let j = i + 1; j <= boardSize; j++) {
+                            if (resultArray[i] > resultArray[j] && resultArray[j] !== 0) {
                                 sum++
                             }
                         }
                     }
+
                 }
 
-                if (count % 2 == 0) {
-                    let zeroPosition = getZeroPosition()
+                if (boardSize % 2 === 0) {
+                    let zeroPosition = getZeroPlace()
                     sum = sum + zeroPosition
-                    if (sum % 2 == 0) {
+                    if (sum % 2 === 0) {
                         result = 1
-
-                        return array
+                        let zeroIndex = resultArray.indexOf(0)
+                        resultArray[zeroIndex] = 'drop_zone'
+                        return resultArray
                     }
-                }
-                if (count % 2 != 0) {
-                    if (sum % 2 == 0 && sum != 0) {  //if(this.sum % 2 != 0)
-                        result = 1;
-
-                        return array
+                }else{
+                    if (sum % 2 === 0 && sum !== 0) {  
+                        result = 1
+                        let zeroIndex = resultArray.indexOf(0)
+                        resultArray[zeroIndex] = 'drop_zone'
+                        return resultArray
                     }
                 }
             }
 
-        }
 
         function shuffle() {
-            let array2 = [...Array(count ** 2).keys()]
+            //let array2 = [...Array(boardSize ** 2).keys()]
+            let array2 = arr
+            //console.log(array2)
             for (let i = array2.length - 1; i > 0; i--) {
                 let randomNumber = Math.floor(Math.random() * (i + 1))
-                let currentnumber = array2[i]
+                let currentNumber = array2[i]
                 array2[i] = array2[randomNumber]
-                array2[randomNumber] = currentnumber
+                array2[randomNumber] = currentNumber
             }
-            array = array2
+            resultArray = array2
         }
 
-        function getZeroPosition() {
-            let copyArray = array.slice()
-            let row;
-            let resultArray = []
-            for (let i = 1; i <= copyArray.length; i++) {
-                while (copyArray.length) {
-                    resultArray.push(copyArray.splice(0, count))
+        function getZeroPlace(){
+            let arrCopy = resultArray.slice()
+            let row = null
+            let result = []
+            for (let i = 1; i <= arrCopy.length; i++) {
+                while (arrCopy.length) {
+                    result.push(arrCopy.splice(0, boardSize))
                 }
-                resultArray.forEach((element, index) => {
+                result.forEach((element, index) => {
                     if (element.includes(0, 0)) {
                         row = index + 1
                     }
@@ -593,10 +594,6 @@ class Game {
             }
             return row
         }
-
-        let zeroIndex = array.indexOf(0)
-        array[zeroIndex] = 'drop_zone'
-        return array
 
     }
 
@@ -623,12 +620,13 @@ class Game {
         } else {
             this.boardSize = newSize
             let arr = []
-            for (let i = 1; i < newSize * newSize + 1; i++) {
+            for (let i = 0; i < newSize * newSize + 1; i++) {
                 if (i < newSize * newSize) {
                     arr.push(i)
                 }
                 if (i === newSize * newSize) {
-                    arr.push('drop_zone')
+                    //arr.push('drop_zone')
+                    //arr.push('drop_zone')
                 }
             }
             this.numbersArr = this.shuffleArray(arr)
