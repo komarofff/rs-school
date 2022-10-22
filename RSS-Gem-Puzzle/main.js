@@ -40,6 +40,7 @@ class Game {
     }
 
     makeBoardNumbers() {
+
         this.board = ''
         let indexOfDropZone = this.numbersArr.indexOf('drop_zone')
 
@@ -526,14 +527,88 @@ class Game {
     }
 
     shuffleArray(arr) {
-        for (let j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+        let count = this.boardSize
+        let result = 0
+        let sum = 0
+        let array = []
+
+        checkSolvability()
+         function checkSolvability() {
+            while (result == 0) {
+                shuffle()
+                for (let i = 0; i < count; i++) {
+                    if (i != 0) {
+                        for (let j = i + 1; j <= count; j++) {
+                            if (array[i] > array[j] && array[j] != 0) {
+                                sum++
+                            }
+                        }
+                    }
+                }
+
+                if (count % 2 == 0) {
+                    let zeroPosition = getZeroPosition()
+                    sum = sum + zeroPosition
+                    if (sum % 2 == 0) {
+                        result = 1
+
+                        return array
+                    }
+                }
+                if (count % 2 != 0) {
+                    if (sum % 2 == 0 && sum != 0) {  //if(this.sum % 2 != 0)
+                        result = 1;
+
+                        return array
+                    }
+                }
+            }
+
         }
-        return arr
+
+        function shuffle() {
+            let array2 = [...Array(count ** 2).keys()]
+            for (let i = array2.length - 1; i > 0; i--) {
+                let randomNumber = Math.floor(Math.random() * (i + 1))
+                let currentnumber = array2[i]
+                array2[i] = array2[randomNumber]
+                array2[randomNumber] = currentnumber
+            }
+            array = array2
+        }
+
+        function getZeroPosition() {
+            let copyArray = array.slice()
+            let row;
+            let resultArray = []
+            for (let i = 1; i <= copyArray.length; i++) {
+                while (copyArray.length) {
+                    resultArray.push(copyArray.splice(0, count))
+                }
+                resultArray.forEach((element, index) => {
+                    if (element.includes(0, 0)) {
+                        row = index + 1
+                    }
+                })
+            }
+            return row
+        }
+
+        let zeroIndex = array.indexOf(0)
+        array[zeroIndex] = 'drop_zone'
+        return array
+
     }
+
+    // shuffleArray(arr) {
+    //     for (let j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+    //     }
+    //     return arr
+    // }
 
     changeTablesGrid(newSize) {
         let storage = localStorage.getItem('SavedGames')
-        if (storage){
+        if (storage) {
             this.startSavedGameButtton = true
 
         }

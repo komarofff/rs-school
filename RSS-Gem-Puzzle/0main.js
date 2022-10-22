@@ -166,9 +166,6 @@ class Game {
                 }, 1000)
 
             } else {
-                this.isMove = false
-                document.querySelector('.stop-game').innerHTML = 'Play'
-                this.isStopped = true
                 this.stopGame()
             }
 
@@ -192,11 +189,7 @@ class Game {
                 this.startSavedGameButtton = false
                 this.buildNumbersArray(this.COMMON_GRID)
                 this.paintBoard()
-
-                this.isMove = false
-                clearInterval(this.timer)
-                document.querySelector('.stop-game').innerHTML = 'Play'
-                this.isStopped = true
+                this.stopGame()
             })
         }
         //change board size
@@ -206,10 +199,7 @@ class Game {
                 // this.stopTime()
                 this.buildNumbersArray(Number(el.dataset.grid))
                 this.paintBoard()
-                this.isMove = false
-                clearInterval(this.timer)
-                document.querySelector('.stop-game').innerHTML = 'Play'
-                this.isStopped = true
+                this.stopGame()
             })
         })
         // on/off sound
@@ -437,6 +427,9 @@ class Game {
     stopGame() {
         //alert('stop game')
         this.isTimerStart = false
+        this.isMove = false
+        document.querySelector('.stop-game').innerHTML = 'Play'
+        this.isStopped = true
         this.stopTime()
     }
 
@@ -470,10 +463,7 @@ class Game {
         }
         this.saveMyGame.push(result)
         localStorage.setItem('SavedGames', JSON.stringify(this.saveMyGame))
-            this.init()
-        this.isMove = false
-        document.querySelector('.stop-game').innerHTML = 'Play'
-        this.isStopped = true
+        this.init()
         this.stopGame()
     }
 
@@ -497,7 +487,7 @@ class Game {
                     this.gameResults.unshift(result)
                     localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
                 }
-            }else if ( maxInArray[0].boardSize !== this.boardSize) {
+            } else if (maxInArray[0].boardSize !== this.boardSize) {
                 if (this.gameResults.length < 10) {
                     this.gameResults.unshift(result)
                     localStorage.setItem('GameResults', JSON.stringify(this.gameResults))
@@ -542,31 +532,31 @@ class Game {
     }
 
     changeTablesGrid(newSize) {
-        let storage = JSON.parse(localStorage.getItem('SavedGames'))
-        if (storage ) {
+        let storage = localStorage.getItem('SavedGames')
+        if (storage){
             this.startSavedGameButtton = true
 
         }
-        if(!this.isFirstStart){
-                this.numbersArr = storage[0].numbers
-                this.time = storage[0].time
-                this.moves = storage[0].moves
-                this.timeCounter = storage[0].timeCounter
-                this.boardSize = storage[0].boardSize
+        if (!this.isFirstStart && storage) {
+            storage = JSON.parse(localStorage.getItem('SavedGames'))
+            this.numbersArr = storage[0].numbers
+            this.time = storage[0].time
+            this.moves = storage[0].moves
+            this.timeCounter = storage[0].timeCounter
+            this.boardSize = storage[0].boardSize
 
-        }
-        else {
-        this.boardSize = newSize
-        let arr = []
-        for (let i = 1; i < newSize * newSize + 1; i++) {
-            if (i < newSize * newSize) {
-                arr.push(i)
+        } else {
+            this.boardSize = newSize
+            let arr = []
+            for (let i = 1; i < newSize * newSize + 1; i++) {
+                if (i < newSize * newSize) {
+                    arr.push(i)
+                }
+                if (i === newSize * newSize) {
+                    arr.push('drop_zone')
+                }
             }
-            if (i === newSize * newSize) {
-                arr.push('drop_zone')
-            }
-        }
-        this.numbersArr = this.shuffleArray(arr)
+            this.numbersArr = this.shuffleArray(arr)
         }
 
     }
