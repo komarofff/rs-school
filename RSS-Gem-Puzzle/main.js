@@ -537,7 +537,7 @@ class Game {
             this.startSavedGameButtton = true
 
         }
-        if (!this.isFirstStart) {
+        if (!this.isFirstStart && storage) {
             this.numbersArr = storage[0].numbers
             this.time = storage[0].time
             this.moves = storage[0].moves
