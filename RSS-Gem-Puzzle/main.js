@@ -24,6 +24,7 @@ class Game {
         this.savedGameButton = ''
         this.deleteAllResults = ''
         this.isSound = true
+        this.soundBeep = new Audio("sound.mp3")
 
         this.xStart = null
         this.YStart = null
@@ -97,9 +98,11 @@ class Game {
             <line x1="4" y1="18" x2="20" y2="18"></line>
            </svg>
           </p>
-          <div class=" mt-1  me-4"><button class="fw-normal btn btn-warning stop-game w-100  w-md-unset text-nowrap py-1 px-4">Play</button></div>
-          <div class="fs-6 fw-normal me-3">Moves:<span class="ms-2 moves fs-5 fw-bolder"> ${this.moves}</span></div>
-          <div class="fs-6 fw-normal">Time:<span class="ms-2 time fs-5 fw-bolder"> ${this.time}</span></div>            
+          <div class="mt-5  mt-md-2 d-grid results-box">
+          <div class= "d-flex flex-nowrap align-items-center "><button class="fw-normal btn btn-warning stop-game  text-nowrap py-1 px-4">Play</button></div>
+          <div class="d-flex flex-nowrap align-items-center fs-6 fw-normal ">Moves:<span class="ms-1 moves fs-5 fw-bolder"> ${this.moves}</span></div>
+          <div class=" d-flex flex-nowrap align-items-center fs-6 fw-normal">Time:<span class="ms-1 time fs-5 fw-bolder"> ${this.time}</span></div> 
+          </div>           
          </div>
          <div class="d-flex w-fit-content justify-content-center align-items-center mx-auto my-2">
             <div class="display-grid grid-${this.boardSize}-column gameBoard ">
@@ -600,8 +603,9 @@ class Game {
     }
 
     sound() {
-        let snd = new Audio("sound.mp3"); // buffers automatically when created
-        snd.play()
+        // let snd = new Audio("sound.mp3")
+        // snd.play()
+        this.soundBeep.play()
     }
 
 }

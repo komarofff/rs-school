@@ -1,33 +1,43 @@
-html,body{
+html, body {
     font-family: 'Caveat Brush', cursive !important;
     font-size: 20px;
     overflow-x: hidden;
 }
-body{
+
+body {
     background-image: url('image.jpg');
-    width:100vw;
-    height:100vh;
+    width: 100vw;
+    height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 
 }
-.bottom-info{
-    background: rgba(255,255,255,0.5);
+
+.bottom-info {
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
-    box-shadow:0 0 10px #ccc;
-    padding:10px;
+    box-shadow: 0 0 10px #ccc;
+    padding: 10px;
 }
-#gameBoard{
+
+#gameBoard {
     display: flex;
     flex-direction: column;
     /*height: 90vh;*/
     /*border:1px solid red;*/
 }
-@media(min-width: 768px){
-    .w-md-unset{
+
+@media (min-width: 768px) {
+    .w-md-unset {
         width: unset !important;
     }
+}
+
+.results-box {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-items: center;
 }
 
 .grid-2-column {
@@ -37,6 +47,7 @@ body{
     grid-gap: 5px;
 
 }
+
 .grid-3-column {
     display: grid;
     grid-template-columns: repeat(3, 15vh);
@@ -90,7 +101,7 @@ body{
     min-width: 100%;
     justify-content: center;
     background: rgba(224, 224, 224, 0.71);
-    box-shadow:  5px 5px 8px #bcbcbc,
+    box-shadow: 5px 5px 8px #bcbcbc,
     -5px -5px 8px #ffffff;
     padding: 1px;
     border-radius: 10px;
@@ -109,17 +120,19 @@ body{
     user-select: none;
     border-radius: 10px;
     background: #f1eded;
-    box-shadow:  3px 3px 5px #bcbcbc,
+    box-shadow: 3px 3px 5px #bcbcbc,
     -3px -3px 5px #ffffff;
 }
-@media(max-width: 991px){
+
+@media (max-width: 991px) {
     .number-item {
         /*width:60px;*/
         /*height:60px;*/
         font-size: 30px;
     }
 }
-@media(max-width: 767px){
+
+@media (max-width: 767px) {
     .grid-3-column {
         display: grid;
         grid-template-columns: repeat(3, 18vw);
@@ -181,7 +194,8 @@ body{
         transform: translateY(-110%);
         transition: .3s ease-in-out;
     }
-    .close-mobile-menu{
+
+    .close-mobile-menu {
         position: absolute;
         right: 10px;
         top: 0;
@@ -189,15 +203,17 @@ body{
         font-weight: bold;
         transform: scaleY(.8);
     }
-    .open-mobile-menu{
+
+    .open-mobile-menu {
         background: #fff;
-        padding:5px;
+        padding: 5px;
         position: fixed;
         left: 0;
-        top:0;
+        top: 0;
     }
 }
-@media(max-width: 575px){
+
+@media (max-width: 575px) {
 
     .grid-3-column {
         display: grid;
@@ -249,12 +265,15 @@ body{
     }
 
 }
-@media(max-width: 520px){
+
+@media (max-width: 520px) {
+
     .number-item {
         /*width:11vw;*/
         /*height:11vw;*/
         font-size: 30px;
     }
+
     .grid-3-column {
         display: grid;
         grid-template-columns: repeat(3, 29vw);
@@ -304,14 +323,34 @@ body{
 
     }
 }
-@media(max-width:370px){
+
+@media (max-width: 370px) {
+    .bottom-info {
+        padding: 5px;
+    }
+
     .change-tables-size {
-        font-size: 5vw;
+        font-size: 4vw;
+    }
+
+    .results-box {
+
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5px;
+    }
+
+    .results-box > div {
+        font-size: 5vw !important;
+    }
+
+    .results-box > div > span {
+        font-size: 6vw !important;
     }
 }
+
 .drop-zone-item {
-   /*background: rgba(0,0,0,.3);*/
-   /* border-radius:10px;*/
+    /*background: rgba(0,0,0,.3);*/
+    /* border-radius:10px;*/
 }
 
 .w-fit-content {
@@ -328,7 +367,7 @@ canvas {
 }
 
 .modal-window {
-    z-index:3;
+    z-index: 3;
     min-width: 320px;
     max-width: 100%;
     min-height: 300px;
@@ -341,6 +380,7 @@ canvas {
     left: 50%;
     transform: translate(-50%, -50%)
 }
+
 .close-window {
     position: absolute;
     top: 0;
@@ -349,20 +389,21 @@ canvas {
     font-weight: bold;
     cursor: pointer;
 }
-.congratulation{
+
+.congratulation {
     background: #fff;
     border-radius: 5px;
     box-shadow: -2px -1px 35px #ccc;
-    width:100%;
+    width: 100%;
     text-align: center;
     color: #0725cb;
     font-size: 6vw;
-    position:fixed;
-    top:30%;
-    left:50%;
-    transform: translate(-50%,-30%);
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
     font-weight: bold;
     line-height: 100%;
-    padding:10px;
+    padding: 10px;
 
 }
