@@ -566,9 +566,7 @@ class Game {
 
 
         function shuffle() {
-            //let array2 = [...Array(boardSize ** 2).keys()]
             let array2 = arr
-            //console.log(array2)
             for (let i = array2.length - 1; i > 0; i--) {
                 let randomNumber = Math.floor(Math.random() * (i + 1))
                 let currentNumber = array2[i]
