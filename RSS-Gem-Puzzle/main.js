@@ -534,16 +534,34 @@ class Game {
         let boardSize = this.boardSize
 
         function check() {
-            let indexOfZero = null
+            let indexOfZero = 0
             array.forEach((elem, idx) => elem.includes(0) && (indexOfZero = idx))
             let array2 = array.flat()
             array2.splice(array2.indexOf(0), 1)
             let sum = array2.reduce((start, elemValue, idx, arr) => (arr.slice(idx).forEach(elem => {
-                elem < elemValue && (start += 1)}), start), 0)
+                elem < elemValue && (start += 1)
+            }), start), 0)
 
-            let sum2 = array2.reduce(((e, t, s, i) => (i.slice(s).forEach((s => {
-                s < t && (e += 1)
-            })), e)), 0)
+            ////////////////
+            let number = array.flat().map((elem, idx, arr) => {
+                let sum = 0
+                for (let i = idx; i < arr.length; i++) {
+                    if (elem > arr[i] && arr[i] !== 0) sum++
+                }
+                return sum
+            }).reduce((start, elem) => start + elem, 0)
+            //console.log('number',number)
+            let number2 = 0
+            array.forEach((a, i) => {
+                a.forEach((el) => {
+                    if (el === 0) number2 = i + 1
+                })
+            })
+            number += number2
+            //return number % 2 === arr.length % 2
+
+
+            ////////////////
 
             if (array.length % 2 !== 0) {
                 // нечетная матрица
@@ -567,6 +585,7 @@ class Game {
             }
 
         }
+
         check()
         if (resultArray.length > 0) {
             let zeroIndex = resultArray.indexOf(0)
