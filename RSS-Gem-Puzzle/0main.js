@@ -40,21 +40,22 @@ class Game {
     }
 
     makeBoardNumbers() {
+
         this.board = ''
         let indexOfDropZone = this.numbersArr.indexOf('drop_zone')
 
         for (let i = 0; i < this.numbersArr.length; i++) {
             if (typeof this.numbersArr[i] === "number") {
                 if (i === indexOfDropZone - 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right">${this.numbersArr[i]}</div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right" ></div>`
                 } else if (i === indexOfDropZone + 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left">${this.numbersArr[i]}</div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left" ></div>`
                 } else if (i === indexOfDropZone - this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down">${this.numbersArr[i]}</div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down" ></div>`
                 } else if (i === indexOfDropZone + this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up">${this.numbersArr[i]}</div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up" ></div>`
                 } else {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item">${this.numbersArr[i]}</div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item"></div>`
                 }
             } else {
                 this.board += `<div data-index="${i}" class="drop-zone-item"></div>`
@@ -217,6 +218,7 @@ class Game {
         clickedGameBoard.addEventListener('mouseup', mouseUp)
 
         function mouseDown(el) {
+           
             if (context.isMove && (el.target.classList.contains('to-right') || el.target.classList.contains('to-left') || el.target.classList.contains('to-up') || el.target.classList.contains('to-down'))) {
                 context.xStart = el.pageX
                 context.yStart = el.offsetY
@@ -439,13 +441,14 @@ class Game {
         this.congratulation.innerHTML = `<div class="congratulation">Hooray! You solved the puzzle in ${this.time} and ${this.moves} moves!</div>`
         this.body.appendChild(this.congratulation)
         setTimeout(() => {
-            this.isTimerStart = true
+            //this.isTimerStart = true
             this.congratulation.innerHTML = ''
             //this.startShuffleGame()
             this.changeTablesGrid(this.boardSize)
             this.paintBoard()
             this.time = '00:00'
             this.moves = 0
+            this.isMove = false
             this.timeCounter = 0
             document.querySelector('.moves').innerHTML = this.moves
             document.querySelector('.time').innerHTML = this.time
@@ -525,15 +528,95 @@ class Game {
         })
     }
 
-    shuffleArray(arr) {
-        for (let j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+
+    shuffleArray(a) {
+        let array = a
+        let resultArray = []
+        let boardSize = this.boardSize
+
+        function check() {
+            let indexOfZero = 0
+            array.forEach((elem, idx) => elem.includes(0) && (indexOfZero = idx))
+            let array2 = array.flat()
+            array2.splice(array2.indexOf(0), 1)
+            let sum = array2.reduce((start, elemValue, idx, arr) => (arr.slice(idx).forEach(elem => {
+                elem < elemValue && (start += 1)
+            }), start), 0)
+
+            ////////////////
+            let number = array.flat().map((elem, idx, arr) => {
+                let sum = 0
+                for (let i = idx; i < arr.length; i++) {
+                    if (elem > arr[i] && arr[i] !== 0) sum++
+                }
+                return sum
+            }).reduce((start, elem) => start + elem, 0)
+            //console.log('number',number)
+            let number2 = 0
+            array.forEach((a, i) => {
+                a.forEach((el) => {
+                    if (el === 0) number2 = i + 1
+                })
+            })
+            number += number2
+            //return number % 2 === arr.length % 2
+
+
+            ////////////////
+
+            if (array.length % 2 !== 0) {
+                // нечетная матрица
+                if (sum % 2 === 0 && (sum + indexOfZero) % 2 !== 0) {
+                    resultArray = array.flat()
+                } else {
+                    resultArray = []
+                    array = shuff()
+                    check()
+                }
+            }
+            if (array.length % 2 === 0) {
+                // четная матрица
+                if (sum % 2 !== 0 && (sum + indexOfZero) % 2 !== 0) {
+                    resultArray = array.flat()
+                } else {
+                    resultArray = []
+                    array = shuff()
+                    check()
+                }
+            }
+
         }
-        return arr
+
+        check()
+        if (resultArray.length > 0) {
+            let zeroIndex = resultArray.indexOf(0)
+            resultArray[zeroIndex] = 'drop_zone'
+            return resultArray
+        } else {
+            check()
+        }
+
+        function shuff() {
+            let arr = []
+            for (let i = 0; i < boardSize * boardSize + 1; i++) {
+                if (i < boardSize * boardSize) {
+                    arr.push(i)
+                }
+            }
+            for (let j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+            }
+
+            let blockArray = []
+            for (let i = 0; i < boardSize; i++) {
+                blockArray.push(arr.slice(i * boardSize, (i + 1) * boardSize))
+            }
+            return blockArray
+        }
     }
 
     changeTablesGrid(newSize) {
         let storage = localStorage.getItem('SavedGames')
-        if (storage){
+        if (storage) {
             this.startSavedGameButtton = true
 
         }
@@ -547,16 +630,20 @@ class Game {
 
         } else {
             this.boardSize = newSize
+            let boardSize = this.boardSize
             let arr = []
-            for (let i = 1; i < newSize * newSize + 1; i++) {
+            for (let i = 0; i < newSize * newSize + 1; i++) {
                 if (i < newSize * newSize) {
                     arr.push(i)
                 }
-                if (i === newSize * newSize) {
-                    arr.push('drop_zone')
-                }
             }
-            this.numbersArr = this.shuffleArray(arr)
+            for (let j, x, i = arr.length; i; j = Math.random() * i, x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+            }
+            let blockArray = []
+            for (let i = 0; i < boardSize; i++) {
+                blockArray.push(arr.slice(i * boardSize, (i + 1) * boardSize))
+            }
+            this.numbersArr = this.shuffleArray(blockArray)
         }
 
     }
@@ -566,16 +653,26 @@ class Game {
         this.moves = 0
         this.timeCounter = 0
         this.boardSize = newSize
+
+        // let arr = []
+        // while (arr.length < Math.pow(this.boardSize, 2)) {
+        //     let t = Math.floor(Math.random() * (Math.pow(this.boardSize, 2)))
+        //     arr.includes(t) || arr.push(t)
+        // }
         let arr = []
-        for (let i = 1; i < newSize * newSize + 1; i++) {
+        for (let i = 0; i < newSize * newSize + 1; i++) {
             if (i < newSize * newSize) {
                 arr.push(i)
             }
-            if (i === newSize * newSize) {
-                arr.push('drop_zone')
-            }
         }
-        this.numbersArr = this.shuffleArray(arr)
+        for (let j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x) {
+        }
+
+        let blockArray = []
+        for (let i = 0; i < this.boardSize; i++) {
+            blockArray.push(arr.slice(i * this.boardSize, (i + 1) * this.boardSize))
+        }
+        this.numbersArr = this.shuffleArray(blockArray)
     }
 
     stopTime() {

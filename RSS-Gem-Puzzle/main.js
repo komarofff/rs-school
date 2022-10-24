@@ -47,13 +47,13 @@ class Game {
         for (let i = 0; i < this.numbersArr.length; i++) {
             if (typeof this.numbersArr[i] === "number") {
                 if (i === indexOfDropZone - 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right"></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right" ></div>`
                 } else if (i === indexOfDropZone + 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left"></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left" ></div>`
                 } else if (i === indexOfDropZone - this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down"></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down" ></div>`
                 } else if (i === indexOfDropZone + this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up"></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up" ></div>`
                 } else {
                     this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item"></div>`
                 }
@@ -218,6 +218,7 @@ class Game {
         clickedGameBoard.addEventListener('mouseup', mouseUp)
 
         function mouseDown(el) {
+
             if (context.isMove && (el.target.classList.contains('to-right') || el.target.classList.contains('to-left') || el.target.classList.contains('to-up') || el.target.classList.contains('to-down'))) {
                 context.xStart = el.pageX
                 context.yStart = el.offsetY
@@ -256,6 +257,7 @@ class Game {
         }
 
         function mouseUp(el) {
+            document.removeEventListener('mousemove', startMove)
             let x = el.pageX
             let y = el.offsetY
             if (x === context.xStart && y === context.yStart) {
