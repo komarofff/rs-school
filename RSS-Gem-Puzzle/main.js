@@ -47,13 +47,13 @@ class Game {
         for (let i = 0; i < this.numbersArr.length; i++) {
             if (typeof this.numbersArr[i] === "number") {
                 if (i === indexOfDropZone - 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right" ></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-right" draggable="true"></div>`
                 } else if (i === indexOfDropZone + 1) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left" ></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-left" draggable="true"></div>`
                 } else if (i === indexOfDropZone - this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down" ></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-down" draggable="true"></div>`
                 } else if (i === indexOfDropZone + this.boardSize) {
-                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up" ></div>`
+                    this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item can-move to-up" draggable="true"></div>`
                 } else {
                     this.board += `<div data-index="${i}" data-number="${this.numbersArr[i]}" class="number-item"></div>`
                 }
