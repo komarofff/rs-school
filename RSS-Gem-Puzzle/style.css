@@ -366,7 +366,7 @@ body {
 }
 
 .can-move {
-    cursor: pointer;
+    cursor: move;
 }
 
 canvas {

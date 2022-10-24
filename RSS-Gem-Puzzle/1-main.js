@@ -321,36 +321,24 @@ class Game {
     }
 
     moveRight(el) {
-        el.ondragstart = function() {
-                return false
-            }
         let width = el.getBoundingClientRect().width
         el.style.cssText = `transform: translateX(${width + 1}px)`
         this.moveNumbersForClick(el)
     }
 
     moveLeft(el) {
-        el.ondragstart = function() {
-                return false
-            }
         let width = el.getBoundingClientRect().width
         el.style.cssText = `transform: translateX(-${width + 1}px)`
         this.moveNumbersForClick(el)
     }
 
     moveTop(el) {
-        el.ondragstart = function() {
-                return false
-            }
         let height = el.getBoundingClientRect().height
         el.style.cssText = `transform: translateY(-${height + 1}px)`
         this.moveNumbersForClick(el)
     }
 
     moveDown(el) {
-        el.ondragstart = function() {
-                return false
-            }
         let height = el.getBoundingClientRect().height
         el.style.cssText = `transform: translateY(${height + 1}px)`
         this.moveNumbersForClick(el)
