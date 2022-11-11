@@ -1,0 +1,11 @@
+# Browsers that we support
+
+[production]
+last 4 version
+> 1%
+ie 10
+not op_mini all
+
+[development]
+last 4 chrome version
+last 4 firefox version
