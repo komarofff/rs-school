@@ -87,17 +87,6 @@ export async function createMedia(mediaUrl, selector) {
         return {hours: hours, minutes: minutes, seconds: seconds}
     }
 
-    //volume
-    volume.addEventListener('change', (e) => {
-        if(volume.value === '0'){
-            e.target.previousElementSibling.src = 'public/images/speaker-off.png'
-        }
-        if(volume.value > '0'){
-            e.target.previousElementSibling.src = 'public/images/speaker.png'
-        }
-        console.log(volume.value,e.target.previousElementSibling.src)
-        currentMediaInPlayer.volume = volume.value / 10
-    })
 
     //change timeline and color range
     mediaObject.startTimeLine.addEventListener('change', changeTimeLineQuestion)
@@ -132,6 +121,20 @@ export async function createMedia(mediaUrl, selector) {
         }
 
     }
+
+    //volume
+    volume.addEventListener('change', (e) => {
+        if(volume.value === '0'){
+            e.target.previousElementSibling.src = 'public/images/speaker-off.png'
+            isSound = false
+        }
+        if(volume.value > '0'){
+            e.target.previousElementSibling.src = 'public/images/speaker.png'
+            isSound = true
+        }
+        //console.log(volume.value,e.target.previousElementSibling.src)
+        currentMediaInPlayer.volume = volume.value / 10
+    })
 
     // sound on-off
     speaker.addEventListener('click', (e) => {
