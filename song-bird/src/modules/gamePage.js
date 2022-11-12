@@ -4,7 +4,9 @@ import {createPlayer} from './game-components/createPlayer'
 import {createMedia} from './game-components/createMedia'
 import {getRandom} from './game-components/getRandom'
 
+//todo
 // result && result при переходе на новый этап
+// в createMedia баг с ползунком timeline. На вопросном медиа после открытия ответного медиа не двигается ползунок????
 
 export let mediaObject = {
     mediasArray: [],
@@ -51,18 +53,22 @@ export default function () {
             answerPlayStopButton: null,
             startMediaSelector: null,
             answerMediaSelector: null,
+            startTimeLine: null,
+            answerTimeLine: null
         }
 
         let counter = 5
         let birdsList = null
 
-
         const playerSection = document.querySelector('.player-section')
         const solutionSection = document.querySelector('.solution')
         solutionSection.innerHTML = '<p>Послушайте плеер. Выберите птицу из списка</p>'
+
         const successAudio = new Audio('public/audio/success.mp3')
         const wrongAudio = new Audio('public/audio/wrong.mp3')
+
         let isFinishStage = false
+
         const nextLevelButton = document.querySelector('.next-level-button')
         nextLevelButton.classList.remove('active')
         nextLevelButton.addEventListener('click', goNextLevel)
@@ -74,7 +80,7 @@ export default function () {
                 let currentIdx = 0
                 let tabsInCategories = categories.querySelectorAll('.tab')
                 tabsInCategories.forEach((el, id) => {
-                    console.log(el)
+                    // console.log(el)
                     if (el.classList.contains('active-tab')) {
                         currentIdx = id + 1
                     }
@@ -121,7 +127,7 @@ export default function () {
             // console.log(e.target)
             if (e.target.dataset.name) {
                 if (e.target.dataset.name === finishData.species && !isFinishStage) {
-                    console.log('правильно')
+                    console.log('правильно || здесь надо подготовить очки для следующей игры')
 
                     result += counter
                     resultPlace.innerHTML = result
@@ -137,7 +143,9 @@ export default function () {
                     if (mediaObject.answerMedia) {
                         mediaObject.answerMedia.pause()
                     }
-                    if (mediaObject.answerPlayStopButton) mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
+                    if (mediaObject.answerPlayStopButton) {
+                        mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
+                    }
                     mediaObject.mediasArray.forEach(el => el.pause())
 
 
@@ -156,12 +164,13 @@ export default function () {
                     birdsList.arr.forEach((el, id) => {
                         if (el.species === e.target.dataset.name) {
                             if (isFinishStage) {
-                                console.log('не правильно и игра  закончена ')
-                                console.log('если играет птица, остановить плеер  ')
+                                console.log('не правильно и игра  ЗАКОНЧЕНА  ')
 
                                 mediaObject.mediasArray.forEach(el => el.pause())
                                 mediaObject.startPlayStopButton.src = "public/images/play-button.png"
-                                if (mediaObject.answerPlayStopButton) mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
+                                if (mediaObject.answerPlayStopButton) {
+                                    mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
+                                }
                             }
                             resultId = id
                             if (!isFinishStage) {
@@ -169,7 +178,7 @@ export default function () {
                                     if (idx > 0) element.pause()
 
                                 })
-                                console.log('не правильно и игра не закончена || здесь отнимаем 1 балл за неправильный ответ')
+                                console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
                                 if (counter > 0) {
                                     counter--
                                     console.log('counter', counter)
