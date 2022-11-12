@@ -1,4 +1,4 @@
-import {birdsData} from './birdsData'
+import {birdsData} from './game-components/birdsData'
 
 export class GalleryItem{
     constructor() {

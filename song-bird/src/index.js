@@ -53,9 +53,7 @@ app()
 
 function app() {
     if (isGamePage) {
-
         game()
-
     } else {
         gamePage.classList.add('hidden')
     }
