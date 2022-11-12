@@ -12,6 +12,7 @@ export async function createMedia(mediaUrl, selector) {
 
     // массив всех звуков для отключения
     mediaObject.mediasArray.push(currentMediaInPlayer)
+    // let dataFromMedia = mediaObject.mediasArray[0].getAttribute('src')
 
     if (selector.classList.contains('player')) {
         mediaObject.startMedia = currentMediaInPlayer
@@ -31,6 +32,7 @@ export async function createMedia(mediaUrl, selector) {
 
     const playTime = selector.querySelector('.play-time')
     const mediaTime = selector.querySelector('.media-time')
+    // const playStopButton = selector.querySelector('.play-stop-button')
     const timeLine = selector.querySelector('.time-line')
     const volume = selector.querySelector('.volume')
     const speaker = selector.querySelector('.speaker')

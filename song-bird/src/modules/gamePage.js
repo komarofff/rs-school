@@ -3,10 +3,9 @@ import {createBirdsList} from './game-components/createBirdsList'
 import {createPlayer} from './game-components/createPlayer'
 import {createMedia} from './game-components/createMedia'
 import {getRandom} from './game-components/getRandom'
-// разобраться с  isPlay для запуска аудио главного вопроса остановленного после нажатия плай  на ответном плеере
-// при переходе на главную все звуки ОСТАНОВЛЕНЫ !!! - решено
-// result ???? при переходе на новый этап
-// mediaUrl-send-главный плеер',mediaUrl  - отправляет иногда undefined !!!!!
+
+// result && result при переходе на новый этап
+
 export let mediaObject = {
     mediasArray: [],
     startMedia: null,
@@ -15,6 +14,8 @@ export let mediaObject = {
     answerPlayStopButton: null,
     startMediaSelector: null,
     answerMediaSelector: null,
+    startTimeLine: null,
+    answerTimeLine: null
 }
 
 export default function () {
