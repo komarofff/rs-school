@@ -3,11 +3,11 @@ import {createBirdsList} from './game-components/createBirdsList'
 import {createPlayer} from './game-components/createPlayer'
 import {createMedia} from './game-components/createMedia'
 import {getRandom} from './game-components/getRandom'
-import {eventsObject, startResultPage,results} from "../index";
 
 //todo
 // result && result при переходе на новый этап
-// если уже выбран неверный результат проверять - и не отнимать баллы за нажатие на него еще раз
+// в createMedia баг с ползунком timeline. На вопросном медиа после открытия ответного медиа не двигается ползунок????
+
 export let mediaObject = {
     mediasArray: [],
     startMedia: null,
@@ -154,10 +154,7 @@ export default function () {
                     isFinishStage = !isFinishStage
                     if (birdsList.idArr === 5) {
                         mediaObject.mediasArray.forEach(el => el.pause())
-                        eventsObject.isHomePage = false
-                        eventsObject.isGamePage = false
-                        eventsObject.isResultPage = true
-                        startResultPage()
+                        alert('go to result page')
                     }
                     // включаем переход на новую вкладку
                     nextLevelButton.classList.add('active')

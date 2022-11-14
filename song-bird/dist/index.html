@@ -12,21 +12,24 @@
 <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
 <body class="container-fluid  flex flex-col justify-between min-h-screen text-blue-900 home-body relative fade-in px-2">
 <header class="pt-2 container-fluid  border-3 border-gray-200  drop-shadow-lg">
+
     <nav class="container mx-auto ">
+        <div class="logo-button bg-gray-50 bg-opacity-75 rounded p-1 my-2 w-full flex justify-center md:w-fit group hover:scale-95 transition duration-300 cursor-pointer" >
+            <img class="h-[70px] " src="public/images/logo.png" alt="song bird application logo">
+        </div>
         <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-xl">
-            <li class="go-home  active-header-tab  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg md:mr-2 p-2 w-4/12 flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                <img class="h-[40px] absolute left-0 top-1/2 -translate-y-1/2" src="public/images/logo.png"
-                     alt="song bird application logo">
+            <li class="go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg md:mr-2 p-2 w-4/12 flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+
                 Главная
             </li>
             <li class="hidden game-result-box  bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
-                   <span class="mr-2">Результат:</span> <span class="result">0</span>
+                <span class="mr-2">Результат:</span> <span class="result">0</span>
             </li>
-            <li class="go-game  bg-gray-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-width hover:bg-opacity-100 hover:text-gray-900  hover:shadow-blue-700/50">
+            <li class="go-game  bg-blue-700 text-white border border-blue-700 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-white  hover:text-blue-700  ">
                 Начать игру
             </li>
             <li class="go-result hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                Результат
+                Ваши результаты
             </li>
         </ul>
     </nav>
@@ -38,7 +41,8 @@
         </section>
         <section class="player-section container mx-auto rounded p-2  my-2   bg-gray-50 bg-opacity-[90%] shadow-xl">
         </section>
-        <section class="task-section container mx-auto rounded py-1 my-2 flex justify-between items-start  w-full bg-gray-50 bg-opacity-[90%] shadow-xl flex-wrap md:flex-nowrap">
+        <section
+                class="task-section container mx-auto rounded py-1 my-2 flex justify-between items-start  w-full bg-gray-50 bg-opacity-[90%] shadow-xl flex-wrap md:flex-nowrap">
             <div class="birds-list w-full  h-full p-2 border-r border-gray-200  "></div>
             <div class="solution w-full  p-2 min-h-full self-stretch p-2 "></div>
 
@@ -48,7 +52,7 @@
         </p>
     </div>
 
-    <div class="results-page  container mx-auto   transition duration-300 fade-in"></div>
+    <div class="hidden results-page  container mx-auto   transition duration-300 fade-in"></div>
 
 
 </main>

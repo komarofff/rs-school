@@ -3,11 +3,11 @@ import {createBirdsList} from './game-components/createBirdsList'
 import {createPlayer} from './game-components/createPlayer'
 import {createMedia} from './game-components/createMedia'
 import {getRandom} from './game-components/getRandom'
-import {eventsObject, startResultPage,results} from "../index";
 
 //todo
 // result && result при переходе на новый этап
-// если уже выбран неверный результат проверять - и не отнимать баллы за нажатие на него еще раз
+// в createMedia баг с ползунком timeline. На вопросном медиа после открытия ответного медиа не двигается ползунок????
+
 export let mediaObject = {
     mediasArray: [],
     startMedia: null,
@@ -23,6 +23,7 @@ export let mediaObject = {
 export default function () {
 
     //let mediaObject.mediasArray = []
+    let className
     let result = 0
     let startLevel = 0
     let categories
@@ -110,13 +111,13 @@ export default function () {
         ////////////////////
         // формируем плееры. отправляем селектор для прорисовки в разных местах и управлением плеером
         //плеер главного вопроса. вопрос бокс отправляем его селектор запоминаем данные вопроса для сравнения с ответами
-
-        playerSection.innerHTML = createPlayer(null, 'player')
+        className = 'player'
+        playerSection.innerHTML = createPlayer(null, className)
         //mediaObject.mediasArray.forEach(el => el.pause())
-        let selector = document.querySelector('.player')
+        let selector = document.querySelector(`.${className}`)
         let mediaUrl = birdsList.arr[randomElement].audio
         //console.log('mediaUrl-send-главный плеер', mediaUrl)
-        let start = await createMedia(mediaUrl, selector)
+        let start = await createMedia(mediaUrl, selector,className)
 
         // блок проверки результатов
         //ждем нажатия на список для сравнения
@@ -154,10 +155,7 @@ export default function () {
                     isFinishStage = !isFinishStage
                     if (birdsList.idArr === 5) {
                         mediaObject.mediasArray.forEach(el => el.pause())
-                        eventsObject.isHomePage = false
-                        eventsObject.isGamePage = false
-                        eventsObject.isResultPage = true
-                        startResultPage()
+                        alert('go to result page')
                     }
                     // включаем переход на новую вкладку
                     nextLevelButton.classList.add('active')
@@ -209,9 +207,10 @@ export default function () {
 
         async function showSolutionPlayer(data) {
             // плеер зоны решения
-            solutionSection.innerHTML = createPlayer(data, 'solution-media')
+            className = 'solution-media'
+            solutionSection.innerHTML = createPlayer(data, className)
             let mediaUrl2 = data.audio
-            let selector2 = document.querySelector('.solution-media')
+            let selector2 = document.querySelector(`.${className}`)
             let start2 = await createMedia(mediaUrl2, selector2)
 
         }

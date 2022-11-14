@@ -48,7 +48,7 @@ export async function createMedia(mediaUrl, selector) {
         mediaTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
     })
     currentMediaInPlayer.addEventListener('timeupdate', () => {
-       // console.log('isPlayQuestionPlayer',isPlayQuestionPlayer)
+        // console.log('isPlayQuestionPlayer',isPlayQuestionPlayer)
         let mediaTimeInSeconds = currentMediaInPlayer.currentTime
         let calculatedTime = calculateTime(mediaTimeInSeconds)
         playTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
@@ -101,7 +101,7 @@ export async function createMedia(mediaUrl, selector) {
 
         if (isPlayQuestionPlayer) {
             mediaObject.startMedia.currentTime = mediaObject.startTimeLine.value
-           //mediaObject.startMedia.play()
+            //mediaObject.startMedia.play()
             colorRange(mediaObject.startTimeLine)
         } else {
             mediaObject.startMedia.currentTime = mediaObject.startTimeLine.value
@@ -209,7 +209,7 @@ export async function createMedia(mediaUrl, selector) {
     }
 
     function colorRange(timeLine) {
-       // console.log('timeLine',timeLine)
+        // console.log('timeLine',timeLine)
         let valueRange = (timeLine.value - timeLine.min) / (timeLine.max - timeLine.min) * 100
         timeLine.style.cssText = `background: linear-gradient(to right, rgba(234,247,5,1) 0%, rgba(139,5,255,1) ${valueRange}%,  #F5F7F6 ${valueRange}%,  #F5F7F6 ${rangeMax}%)`
 

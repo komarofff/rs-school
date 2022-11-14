@@ -48,11 +48,15 @@ export async function createMedia(mediaUrl, selector) {
         mediaTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
     })
     currentMediaInPlayer.addEventListener('timeupdate', () => {
+       // console.log('isPlayQuestionPlayer',isPlayQuestionPlayer)
         let mediaTimeInSeconds = currentMediaInPlayer.currentTime
         let calculatedTime = calculateTime(mediaTimeInSeconds)
         playTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
 
         if (isPlayQuestionPlayer) {
+            mediaObject.startTimeLine.value = mediaObject.startMedia.currentTime
+            colorRange(mediaObject.startTimeLine)
+        }else{
             mediaObject.startTimeLine.value = mediaObject.startMedia.currentTime
             colorRange(mediaObject.startTimeLine)
         }
@@ -83,23 +87,21 @@ export async function createMedia(mediaUrl, selector) {
         return {hours: hours, minutes: minutes, seconds: seconds}
     }
 
-    //volume
-    volume.addEventListener('change', () => {
-        currentMediaInPlayer.volume = volume.value / 10
-    })
 
     //change timeline and color range
     mediaObject.startTimeLine.addEventListener('change', changeTimeLineQuestion)
     mediaObject.startTimeLine.addEventListener('input', changeTimeLineQuestion)
+
     if (mediaObject.answerTimeLine) {
         mediaObject.answerTimeLine.addEventListener('change', changeTimeLineAnswer)
         mediaObject.answerTimeLine.addEventListener('input', changeTimeLineAnswer)
     }
 
     function changeTimeLineQuestion() {
+
         if (isPlayQuestionPlayer) {
             mediaObject.startMedia.currentTime = mediaObject.startTimeLine.value
-           // mediaObject.startMedia.play()
+           //mediaObject.startMedia.play()
             colorRange(mediaObject.startTimeLine)
         } else {
             mediaObject.startMedia.currentTime = mediaObject.startTimeLine.value
@@ -110,7 +112,7 @@ export async function createMedia(mediaUrl, selector) {
         if (mediaObject.answerMedia) {
             if (isPlayAnswerPlayer) {
                 mediaObject.answerMedia.currentTime = mediaObject.answerTimeLine.value
-               // mediaObject.answerMedia.play()
+                //mediaObject.answerMedia.play()
                 colorRange(mediaObject.answerTimeLine)
             } else {
                 mediaObject.answerMedia.currentTime = mediaObject.answerTimeLine.value
@@ -119,6 +121,20 @@ export async function createMedia(mediaUrl, selector) {
         }
 
     }
+
+    //volume
+    volume.addEventListener('change', (e) => {
+        if(volume.value === '0'){
+            e.target.previousElementSibling.src = 'public/images/speaker-off.png'
+            isSound = false
+        }
+        if(volume.value > '0'){
+            e.target.previousElementSibling.src = 'public/images/speaker.png'
+            isSound = true
+        }
+        //console.log(volume.value,e.target.previousElementSibling.src)
+        currentMediaInPlayer.volume = volume.value / 10
+    })
 
     // sound on-off
     speaker.addEventListener('click', (e) => {
@@ -143,25 +159,25 @@ export async function createMedia(mediaUrl, selector) {
     function checkQuestionMedia() {
         if (isPlayQuestionPlayer) {
             mediaObject.mediasArray.forEach(el => el.pause())
-            mediaObject.startMedia.pause()
             isPlayQuestionPlayer = false
+            isPlayAnswerPlayer = false
             mediaObject.startPlayStopButton.src = "public/images/play-button.png"
             if (mediaObject.answerPlayStopButton) {
                 mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
             }
         } else {
-            isPlayQuestionPlayer = true
             mediaObject.mediasArray.forEach(el => el.pause())
-            mediaObject.startPlayStopButton.src = "public/images/play-button.png"
-            mediaObject.startMedia.play()
+            isPlayAnswerPlayer = false
+
+            isPlayQuestionPlayer = true
             currentMediaInPlayer = mediaObject.startMedia
-            if (!mediaObject.answerMedia) {
-            } else {
-                mediaObject.answerMedia.pause()
-                isPlayAnswerPlayer = false
+            mediaObject.startMedia.play()
+            mediaObject.startPlayStopButton.src = "public/images/pause-button.png"
+
+            if (mediaObject.answerMedia) {
                 mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
             }
-            mediaObject.startPlayStopButton.src = "public/images/pause-button.png"
+
         }
 
 
@@ -169,22 +185,23 @@ export async function createMedia(mediaUrl, selector) {
 
     function checkAnswerMedia() {
         if (isPlayAnswerPlayer) {
-            isPlayAnswerPlayer = false
             mediaObject.mediasArray.forEach(el => el.pause())
-            mediaObject.answerMedia.pause()
+            isPlayAnswerPlayer = false
+            isPlayQuestionPlayer = false
+
             mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
             if (mediaObject.startPlayStopButton) {
                 mediaObject.startPlayStopButton.src = "public/images/play-button.png"
             }
 
         } else {
-            isPlayAnswerPlayer = true
             mediaObject.mediasArray.forEach(el => el.pause())
-            mediaObject.answerMedia.play()
-            currentMediaInPlayer = mediaObject.answerMedia
-            mediaObject.answerPlayStopButton.src = "public/images/pause-button.png"
-            mediaObject.startMedia.pause()
             isPlayQuestionPlayer = false
+            isPlayAnswerPlayer = true
+            currentMediaInPlayer = mediaObject.answerMedia
+            mediaObject.answerMedia.play()
+            mediaObject.answerPlayStopButton.src = "public/images/pause-button.png"
+
             mediaObject.startPlayStopButton.src = "public/images/play-button.png"
         }
 
