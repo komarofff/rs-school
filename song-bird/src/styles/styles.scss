@@ -185,5 +185,16 @@ html, body {
 @media(max-width: 450px) {
   .categories {
     grid-template-columns: 1fr !important;
+    & > div{
+      display: none;
+    }
+    &>div.active-tab{
+      display: block;
+      text-align: center;
+    }
   }
+}
+
+.gallery-page{
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }

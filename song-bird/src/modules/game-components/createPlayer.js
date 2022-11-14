@@ -2,22 +2,29 @@ export function createPlayer(data = null, selector = 'player') {
     // рисуем проигрыватель для каждой зоны свой ( определяем селектором)
     let name = '*****'
     let description = ''
+    let speciesText = ''
     let species = ''
     let image = 'public/images/bird-shadow.jpg'
     if (data) {
         name = data.name
         image = data.image
         description = data.description
-        species = ' - ' + data.species
+        if(data.species) {
+            speciesText = ' (' + data.species + ')'
+            species = `<span class="w-full ml-2 text-lg"> ${speciesText}</span>`
+        }
     }
     let boxHtml = `
     <div class="flex flex-col items-center ${selector} min-h-full fade-in">
-    <div class="w-full flex">
+    <div class="w-full flex flex-wrap sm:flex-nowrap flex-col sm:flex-row items-center ">
                 <div class="no-image mt-2 mr-4 h-[150px] w-[200px] overflow-hidden rounded-xl shadow-xl">
                     <img class="object-cover  w-full h-full bird-image transition duration-300 fade-in" src="${image}" alt="name">
                 </div>
                 <div class="flex flex-col w-full">
-                    <p class="title text-2xl font-bold mb-0 flex items-center ">${name}  <span class="ml-2 text-lg"> ${species}</span></p>
+                    <p class="title text-2xl font-bold mb-0 flex items-center text-center justify-center w-full my-2 sm:my-0">
+                      <span class="w-full text-center">${name}</span>  
+                      ${species}
+                    </p>
                     <div class="player-box">
                         <div class="bg-blue-500 bg-opacity-75 rounded-lg shadow-lg w-full px-2 py-4 ">
                             <div class="w-full flex items-center relative">

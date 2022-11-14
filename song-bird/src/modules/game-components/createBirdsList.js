@@ -37,7 +37,7 @@ export function createBirdsList() {
     sendData.arr.forEach(el => {
         if (el.name) {
             let li = document.createElement('li')
-            li.className = 'list-item  py-2 pl-5 w-full cursor-pointer  transition duration-300 border-b border-r md:border-r-0 border-l md:border-l-0 border-t md:border-t-0  border-blue-100 hover:bg-blue-500 hover:bg-opacity-75 hover:text-white relative text-sm'
+            li.className = 'list-item  py-2 pl-8 sm:pl-5 w-full cursor-pointer  transition duration-300 border-b border-r md:border-r-0 border-l md:border-l-0 border-t md:border-t-0  border-blue-100 hover:bg-blue-500 hover:bg-opacity-75 hover:text-white relative text-sm'
             li.setAttribute('data-name', el.species)
             li.innerHTML = el.name
             newList.appendChild(li)

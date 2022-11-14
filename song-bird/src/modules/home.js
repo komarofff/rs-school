@@ -15,12 +15,12 @@ export default function (homeSelector) {
 
 
         homeSelector.innerHTML = `
-        <img class="w-[50px] home-button absolute left-2 top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
-        <div class="h-[90%] flex justify-center items-center flex-col bg-white bg-opacity-[90%] rounded-lg shadow-xl text-2xl my-4 p-4 text-center">
-        <h1 class="font-bold">Добро пожаловать в игру!</h1>
+        <img class="w-[50px] home-button absolute sm:left-2 left-1/2 -translate-x-1/2 sm:translate-x-0 top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
+        <div class="h-[90%] flex justify-center items-center flex-col bg-white bg-opacity-[90%] rounded-lg shadow-xl text-xl md:text-2xl my-4 p-4 text-center">
+        <h1 class="font-bold mt-12 sm:mt-0">Добро пожаловать в игру!</h1>
         <h2>Окунитесь в мир разнообразия птичьих голосов!</h2>
         <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>
-        <h2 class="mt-4 text-lg">Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong> в правом верхнем углу</h2>
+        <h2 class="mt-4 text-lg">Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong> </h2>
         </div>
 `
         document.querySelector('.start-game-button').addEventListener('mousemove', () => {
@@ -64,6 +64,14 @@ export default function (homeSelector) {
         })
 
         document.querySelector('.go-game').addEventListener('click', () => {
+            if(!homeAudio.muted) {
+                homeAudio.muted = true
+                homeAudio.pause()
+                homeButtonPlayPause.src = 'public/images/play-button.png'
+                isAudiostart = !isAudiostart
+            }
+        })
+        document.querySelector('.go-gallery').addEventListener('click', () => {
             if(!homeAudio.muted) {
                 homeAudio.muted = true
                 homeAudio.pause()

@@ -92,9 +92,6 @@ export default function () {
                     nextLevelButton.removeEventListener('click', goNextLevel)
                     mediaObject.mediasArray.forEach(el => el.pause())
                     startGame()
-                } else {
-                    // здесь уходим на страницу результата
-                    alert('go to result page')
                 }
 
             }
@@ -159,6 +156,7 @@ export default function () {
                         eventsObject.isHomePage = false
                         eventsObject.isGamePage = false
                         eventsObject.isResultPage = true
+                        eventsObject.isGalleryPage = false
                         startResultPage()
                     }
                     // включаем переход на новую вкладку
