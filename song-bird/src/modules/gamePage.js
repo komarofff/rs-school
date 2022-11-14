@@ -23,7 +23,7 @@ export let mediaObject = {
 export default function () {
 
     //let mediaObject.mediasArray = []
-    let result = 0
+    //let result = 0
     let startLevel = 0
     let categories
     const goToHome = document.querySelector('.go-home')
@@ -58,6 +58,7 @@ export default function () {
         }
 
         let counter = 5
+
         let birdsList = null
 
         const playerSection = document.querySelector('.player-section')
@@ -129,8 +130,9 @@ export default function () {
                 if (e.target.dataset.name === finishData.species && !isFinishStage) {
                     console.log('правильно || здесь надо подготовить очки для следующей игры')
 
-                    result += counter
-                    resultPlace.innerHTML = result
+                    results.result += counter
+
+                    resultPlace.innerHTML = results.result
                     e.target.classList.add('success')
                     // если правильно ответили
                     showSolutionPlayer(finishData)
@@ -182,17 +184,10 @@ export default function () {
 
                                 })
                                 console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
-                                if (counter > 0) {
+
+                                if (counter > 0 && !e.target.classList.contains('error')) {
                                     counter--
-                                    console.log('counter', counter)
-                                    if (result > 0) {
-                                        result--
-                                        resultPlace.innerHTML = result
-                                    }
                                 }
-                                //result += counter
-
-
                                 e.target.classList.add('error')
                                 // если выбрали правильно - то отключаем звук и смену значков (правильно - неправильно перед названием в списке)
                                 wrongAudio.volume = 1

@@ -12,9 +12,8 @@
 <script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
 <body class="container-fluid  flex flex-col justify-between min-h-screen text-blue-900 home-body relative fade-in px-2">
 <header class="pt-2 container-fluid  border-3 border-gray-200  drop-shadow-lg">
-
     <nav class="container mx-auto ">
-        <div class="logo-button bg-gray-50 bg-opacity-75 rounded p-1 my-2 w-full flex justify-center md:w-fit group hover:scale-95 transition duration-300 cursor-pointer" >
+        <div class="logo-button bg-gray-50 bg-opacity-75 rounded p-1 my-2 w-full flex justify-center md:w-fit group hover:scale-95 transition duration-300 cursor-pointer">
             <img class="h-[70px] " src="public/images/logo.png" alt="song bird application logo">
         </div>
         <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-xl">
@@ -35,7 +34,7 @@
     </nav>
 </header>
 <main class="container-fluid    h-full grow flex flex-col ">
-    <div class="home-page container mx-auto transition duration-300 min-h-full w-full grid grow relative"></div>
+    <div class="home-page container mx-auto transition duration-300 min-h-full w-full grid grow relative transition duration-300 fade-in"></div>
     <div class="game-page  transition duration-300 fade-in">
         <section class="questions-title container mx-auto  my-2">
         </section>
@@ -51,10 +50,7 @@
             Следующий уровень
         </p>
     </div>
-
     <div class="hidden results-page  container mx-auto   transition duration-300 fade-in"></div>
-
-
 </main>
 <footer class="p-2 md:p-8 container-fluid  backdrop-blur-sm bg-white/30">
     <div class="container mx-auto flex justify-between items-center font-bold text-blue-900 flex-wrap sm:flex-nowrap">
@@ -63,16 +59,12 @@
             <a target="_blank" href="https://github.com/komarofff"
                class="text-blue-900 hover:text-gray-900 transition duration-300 ">Github - Anatoliy Komarov</a>
         </p>
-
         <a target="_blank" href="https://rs.school/js/"
            class=" mt-2 sm:mt-0 w-full sm:w-[unset]  flex items-center justify-center  font-bold group bg-gray-50 bg-opacity-75  p-2 hover:bg-opacity-100 transition duration-300">
             <img class="w-[50px] mr-2 transition duration-300 " src="public/images/rs_school_js.svg" alt="rs_school">
             <span class="group-hover:text-gray-900 transition duration-300 ">Курс «JavaScript/Front-end»</span>
         </a>
-
     </div>
 </footer>
-
-
 </body>
 </html>
