@@ -21,6 +21,8 @@ let isPreviousResult = false
 if (localStorage.getItem('results')) {
     isPreviousResult = true
 }
+
+let canSave = false
 const body = document.querySelector('body')
 
 const homePage = document.querySelector('.home-page')
@@ -98,9 +100,15 @@ export function startGamePage() {
     app()
 }
 
-goPreviousResult.addEventListener('click', startResultPage)
+goPreviousResult.addEventListener('click', ()=>{startResultPage(false)})
 
-export function startResultPage() {
+export function startResultPage(canSaveResults) {
+if(canSaveResults){
+    canSave  = true
+    isPreviousResult = true
+}else{
+    canSave = false
+}
     goGame.classList.remove('active-header-tab')
     goGame.classList.add('hidden')
     goHome.classList.remove('active-header-tab')
@@ -155,7 +163,7 @@ function startGallery() {
 app()
 
 function app() {
-    if (localStorage.getItem('results')) {
+    if (localStorage.getItem('results') && !canSave) {
         isPreviousResult = true
     }
     if (eventsObject.isGamePage) {
@@ -171,7 +179,7 @@ function app() {
         homePage.classList.add('hidden')
     }
     if (eventsObject.isResultPage) {
-        result(resultPage, isPreviousResult)
+        result(resultPage, canSave)
     } else {
         resultPage.classList.add('hidden')
     }

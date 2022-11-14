@@ -157,7 +157,8 @@ export default function () {
                         eventsObject.isGamePage = false
                         eventsObject.isResultPage = true
                         eventsObject.isGalleryPage = false
-                        startResultPage()
+
+                        startResultPage(true)
                     }
                     // включаем переход на новую вкладку
                     nextLevelButton.classList.add('active')

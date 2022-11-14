@@ -1,6 +1,6 @@
 import {eventsObject, results, startGamePage} from "../index"
 
-export default function (resultSelector, canSeeResults) {
+export default function (resultSelector, cansaveResults) {
     let maxScore = 30
     let data = []
     let resultsSting = ''
@@ -18,7 +18,7 @@ export default function (resultSelector, canSeeResults) {
                 data = JSON.parse(localStorage.getItem('results'))
             }
         }
-    if (!canSeeResults) {
+    if (cansaveResults) {
         data.unshift({
             date: today, time: time, result: results.result
         })
@@ -28,8 +28,8 @@ export default function (resultSelector, canSeeResults) {
         if (results.result < 30) {
             // формируем кнопку рестарта игры
             resultMessage = `
-<p>Максимальное количество баллов за викторину - 30</p>
-<p class="start-game-again font-bold transition duration-300 rounded p-2  my-3 cursor-pointer   text-xl flex justify-center items-center shadow-xl bg-blue-700 text-white border border-blue-700 hover:bg-white hover:text-blue-700">
+      <p>Максимальное количество баллов за викторину - 30</p>
+      <p class="start-game-again font-bold transition duration-300 rounded p-2  my-3 cursor-pointer   text-xl flex justify-center items-center shadow-xl bg-blue-700 text-white border border-blue-700 hover:bg-white hover:text-blue-700">
             Играть еще раз
         </p>`
         } else {
