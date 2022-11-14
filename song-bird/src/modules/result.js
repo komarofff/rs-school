@@ -24,6 +24,19 @@ export default function (resultSelector, canSeeResults) {
         })
         localStorage.removeItem('results')
         localStorage.setItem('results', JSON.stringify(data))
+
+        if (results.result < 30) {
+            // формируем кнопку рестарта игры
+            resultMessage = `
+<p>Максимальное количество баллов за викторину - 30</p>
+<p class="start-game-again font-bold transition duration-300 rounded p-2  my-3 cursor-pointer   text-xl flex justify-center items-center shadow-xl bg-blue-700 text-white border border-blue-700 hover:bg-white hover:text-blue-700">
+            Играть еще раз
+        </p>`
+        } else {
+            // все норм. юзер набрал максимум
+            //выводим поздравление
+            resultMessage = ` <h1>Поздравляем! Вы набрали максимальное количество баллов! Викторина закончена.</h1>`
+        }
     }
     for (let i = 0; i < data.length; i++) {
         if (i < 10) {
@@ -45,18 +58,7 @@ export default function (resultSelector, canSeeResults) {
         `
         }
     }
-    if (results.result < 30) {
-        // формируем кнопку рестарта игры
-        resultMessage = `
-<p>Максимальное количество баллов за викторину - 30</p>
-<p class="start-game-again font-bold transition duration-300 rounded p-2  my-3 cursor-pointer   text-xl flex justify-center items-center shadow-xl bg-blue-700 text-white border border-blue-700 hover:bg-white hover:text-blue-700">
-            Играть еще раз
-        </p>`
-    } else {
-        // все норм. юзер набрал максимум
-        //выводим поздравление
-        resultMessage = ` <h1>Поздравляем! Вы набрали максимальное количество баллов! Викторина закончена.</h1>`
-    }
+
 
 
     resultSelector.innerHTML = `

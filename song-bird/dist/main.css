@@ -633,6 +633,9 @@ video {
 .ml-4 {
   margin-left: 1rem;
 }
+.mt-3 {
+  margin-top: 0.75rem;
+}
 .inline-block {
   display: inline-block;
 }
@@ -1264,6 +1267,12 @@ html, body {
   .sm\:flex-nowrap {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
+  }
+
+  .sm\:items-start {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
 
   .sm\:px-6 {

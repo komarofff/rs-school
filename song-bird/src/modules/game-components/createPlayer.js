@@ -11,7 +11,7 @@ export function createPlayer(data = null, selector = 'player') {
         description = data.description
         if(data.species) {
             speciesText = ' (' + data.species + ')'
-            species = `<span class="w-full ml-2 text-lg"> ${speciesText}</span>`
+            species = `<span class="w-full sm:w-[unset] ml-2 text-lg"> ${speciesText}</span>`
         }
     }
     let boxHtml = `
@@ -20,12 +20,12 @@ export function createPlayer(data = null, selector = 'player') {
                 <div class="no-image mt-2 mr-4 h-[150px] w-[200px] overflow-hidden rounded-xl shadow-xl">
                     <img class="object-cover  w-full h-full bird-image transition duration-300 fade-in" src="${image}" alt="name">
                 </div>
-                <div class="flex flex-col w-full">
-                    <p class="title text-2xl font-bold mb-0 flex items-center text-center justify-center w-full my-2 sm:my-0">
-                      <span class="w-full text-center">${name}</span>  
+                <div class="flex flex-col w-full items-start">
+                    <p class="title text-2xl font-bold mb-0 flex items-center  sm:items-start  justify-center w-full sm:w-[unset] my-2 sm:my-0">
+                      <span class="w-full sm:w-[unset] text-center">${name}</span>  
                       ${species}
                     </p>
-                    <div class="player-box">
+                    <div class="player-box w-full">
                         <div class="bg-blue-500 bg-opacity-75 rounded-lg shadow-lg w-full px-2 py-4 ">
                             <div class="w-full flex items-center relative">
                                 <img class="play-stop-button w-[40px] mr-6 cursor-pointer" src="public/images/play-button.png"
@@ -44,7 +44,7 @@ export function createPlayer(data = null, selector = 'player') {
                     </div>
                 </div>
             </div>
-                <div class="bird-description mt-2 text-sm">${description}</div>
+                <div class="bird-description mt-3 text-sm">${description}</div>
       </div>
             
     `
