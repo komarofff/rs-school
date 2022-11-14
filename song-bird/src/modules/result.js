@@ -41,10 +41,7 @@ export default function (resultSelector, cansaveResults) {
     for (let i = 0; i < data.length; i++) {
         if (i < 10) {
             resultsSting += `<tr  class = "border-b" >
-                <td 
-            class = "sm:px-6  px-2 py-4 whitespace-nowrap text-xl font-medium text-gray-900" >
-             ${i + 1} 
-             </td>
+               
             <td class="text-xl text-gray-900 font-light sm:px-6 px-2  py-4 whitespace-nowrap">
                 ${data[i].date}
             </td>
@@ -71,9 +68,7 @@ export default function (resultSelector, cansaveResults) {
         <table class="min-w-full">
           <thead class="border-b">
             <tr>
-              <th scope="col" class="text-xl font-medium text-gray-900 sm:px-6 px-2 py-4 text-left">
-                N
-              </th>
+              
               <th scope="col" class="text-xl font-medium text-gray-900 sm:px-6 px-2 py-4 text-left">
                 Дата
               </th>

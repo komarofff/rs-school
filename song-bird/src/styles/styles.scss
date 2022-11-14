@@ -185,16 +185,21 @@ html, body {
 @media(max-width: 450px) {
   .categories {
     grid-template-columns: 1fr !important;
-    & > div{
+
+    & > div {
       display: none;
     }
-    &>div.active-tab{
+
+    & > div.active-tab {
       display: block;
       text-align: center;
     }
   }
 }
 
-.gallery-page{
+.gallery-page {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  max-height: 80vh;
+  overflow-y: auto;
 }

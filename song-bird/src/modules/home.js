@@ -12,17 +12,33 @@ export default function (homeSelector) {
         } catch (e) {
             console.log(e)
         }
-
+//https://yandex.by/video/preview/17009047861238276328
 
         homeSelector.innerHTML = `
-        <img class="w-[50px] home-button absolute sm:left-2 left-1/2 -translate-x-1/2 sm:translate-x-0 top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
-        <div class="h-[90%] flex justify-center items-center flex-col bg-white bg-opacity-[90%] rounded-lg shadow-xl text-xl md:text-2xl my-4 p-4 text-center">
-        <h1 class="font-bold mt-12 sm:mt-0">Добро пожаловать в игру!</h1>
-        <h2>Окунитесь в мир разнообразия птичьих голосов!</h2>
-        <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>
-        <h2 class="mt-4 text-lg">Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong> </h2>
-        </div>
+<div class="rounded-lg pt-4 my-4 relative overflow-hidden h-[60vh] ">
+     <video class="video-box z-10 relative rounded-lg"  width="100%" height="100%"  preload="auto" autoplay loop muted>
+        <source class=" rounded-lg " src="public/video/birds.mp4" type="video/mp4">
+     </video>     
+     
+      <div class="video-div z-20 absolute left-0 top-0 right-0 bottom-0 w-full   flex justify-start items-center flex-col bg-white bg-opacity-[70%] rounded-lg shadow-xl text-xl md:text-2xl mt-4 p-4 text-center">
+          <h1 class="font-bold mt-12 sm:mt-0">Добро пожаловать в игру!</h1>
+          <h2>Окунитесь в мир разнообразия птичьих голосов!</h2>
+          <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>
+          <h2 class="mt-4 text-lg">Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong> </h2>
+      </div>
+      
+      <img class="absolute w-[50px]   home-button z-30 sm:left-2 left-1/2 -translate-x-1/2 sm:translate-x-0 top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
+      
+</div>
+        
 `
+        let videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
+        document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+        window.onresize =()=>{
+            videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
+           document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+        }
+
         document.querySelector('.start-game-button').addEventListener('mousemove', () => {
             document.querySelector('.go-game').style.cssText = 'transition: .15s ease-in-out ;transform: scale(.8)'
             setTimeout(() => {
