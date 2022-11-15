@@ -210,7 +210,7 @@ function createHeader() {
     language ? homeBtn = 'Home' : homeBtn = 'Главная'
     language ? resultatBtn = 'Result' : resultatBtn = 'Результат'
     language ? yourResultsBtn = 'Your results' : yourResultsBtn = 'Ваши результаты'
-    language ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результаты игр'
+    language ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результат'
     language ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
     language ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
     language ? langBtn = 'Language' : langBtn = 'Язык'
@@ -218,10 +218,10 @@ function createHeader() {
     let headerHtml = `
     <nav class="container mx-auto ">
         <div class="logo-button  w-full flex justify-between mb-2">
-            <div class="bg-gray-50 bg-opacity-75 rounded"><img class="h-[70px] " src="public/images/logo.png" alt="song bird application logo"></div>
-            <div class="flex bg-gray-50 bg-opacity-75 rounded p-1 my-2">
-              <label for="language">${langBtn}</label>
-              <select class="select ml-1 bg-gray-50 bg-opacity-75 outline-none" id="language" name="language">
+            <div class="logo"><img class="h-[70px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.75)] " src="public/images/logo.png" alt="song bird application logo"></div>
+            <div class="flex items-center  text-xs">
+              <!-- <label for="language">${langBtn}</label>-->
+              <select class="select ml-1  outline-none text-xs" id="language" name="language">
               <option value="RU" selected>RU</option>
               <option value="Engl">ENGL</option>
               </select>
