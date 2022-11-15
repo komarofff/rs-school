@@ -68,6 +68,37 @@ export async function createMedia(mediaUrl, selector) {
         }
 
     })
+    currentMediaInPlayer.addEventListener('ended', () => {
+       // console.log('ended')
+        // console.log('isPlayQuestionPlayer',isPlayQuestionPlayer)
+        currentMediaInPlayer.currentTime = 0
+        let mediaTimeInSeconds = currentMediaInPlayer.currentTime
+        let calculatedTime = calculateTime(mediaTimeInSeconds)
+        playTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
+
+
+        if (isPlayQuestionPlayer) {
+            mediaObject.startPlayStopButton.src = "public/images/play-button.png"
+            mediaObject.startTimeLine.value = mediaObject.startMedia.currentTime
+            colorRange(mediaObject.startTimeLine)
+            isPlayQuestionPlayer = false
+
+        }else{
+            isPlayQuestionPlayer = false
+            mediaObject.startPlayStopButton.src = "public/images/play-button.png"
+            mediaObject.startTimeLine.value = mediaObject.startMedia.currentTime
+            colorRange(mediaObject.startTimeLine)
+        }
+        if (mediaObject.answerTimeLine) {
+            if (isPlayAnswerPlayer) {
+                isPlayAnswerPlayer = false
+                mediaObject.answerPlayStopButton.src = "public/images/play-button.png"
+                mediaObject.answerTimeLine.value = mediaObject.answerMedia.currentTime
+                colorRange(mediaObject.answerTimeLine)
+            }
+        }
+
+    })
 
     function calculateTime(val) {
         let hours = Math.floor(val / 3600)

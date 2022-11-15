@@ -46,6 +46,16 @@ html, body {
   height: 100%;
   width: 100%;
 }
+.gallery-body {
+  animation: fade-in 1s linear;
+  background-image: url('../assets/img/background-image-3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  //background-position: top center;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100vw;
+}
 
 
 .time-line {
@@ -200,8 +210,8 @@ html, body {
 .gallery-page {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px;
-  max-height: 80vh;
-  overflow-y: auto;
+  //max-height: 80vh;
+  //overflow-y: auto;
 }
 
 @media(max-width: 639px) {

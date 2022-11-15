@@ -17,6 +17,7 @@ export function mediaControls() {
     function findSelector(ell) {
 
         let id = ell.target.dataset.id
+        if(id){
         let player = mediasArray[id].player
         let selector = mediasArray[id].selector
         let playTime = document.querySelector(`.${mediasArray[id].className}`).querySelector('.play-time')
@@ -27,7 +28,12 @@ export function mediaControls() {
         let speaker = document.querySelector(`.${mediasArray[id].className}`).querySelector('.speaker')
         let currentMediaInPlayer = mediasArray[id].player
 
-
+        player.addEventListener('ended', goToStart)
+        function goToStart(){
+            player.currentTime = 0
+            playStopButton.src = "public/images/play-button.png"
+            timeUpdate()
+        }
         // play-stop
         if (ell.target.classList.contains('play-stop-button')) {
 
@@ -66,12 +72,15 @@ export function mediaControls() {
 
         player.addEventListener('timeupdate', () => {
            // console.log('update')
+            timeUpdate()
+        })
+        function timeUpdate(){
             let mediaTimeInSeconds = player.currentTime
             let calculatedTime = calculateTime(mediaTimeInSeconds)
             playTime.innerHTML = calculatedTime.minutes + ':' + calculatedTime.seconds
             timeLine.value = player.currentTime
             colorRange(timeLine)
-        })
+        }
 
         function calculateTime(val) {
             let hours = Math.floor(val / 3600)
@@ -138,7 +147,7 @@ export function mediaControls() {
 
         }
 
-
+        }
     }
 
 }

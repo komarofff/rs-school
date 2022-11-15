@@ -75,6 +75,7 @@ function startHomePage() {
     eventsObject.isHomePage = true
     eventsObject.isGamePage = false
     eventsObject.isResultPage = false
+    eventsObject.isGalleryPage = false
     app()
 }
 
@@ -176,12 +177,16 @@ function app() {
         isPreviousResult = true
     }
     if (eventsObject.isGamePage) {
+        body.classList.add('game-body')
+        body.classList.remove('gallery-body')
+        body.classList.remove('home-body')
         game()
     } else {
         gamePage.classList.add('hidden')
     }
     if (eventsObject.isHomePage) {
         body.classList.remove('game-body')
+        body.classList.remove('gallery-body')
         body.classList.add('home-body')
         home(homePage)
     } else {
@@ -193,6 +198,10 @@ function app() {
         resultPage.classList.add('hidden')
     }
     if (eventsObject.isGalleryPage) {
+        body.classList.remove('game-body')
+        body.classList.remove('home-body')
+        body.classList.add('gallery-body')
+
         gallery(galleryPage)
     } else {
         galleryPage.classList.add('hidden')
