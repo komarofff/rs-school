@@ -216,7 +216,7 @@ function createHeader() {
     language ? langBtn = 'Language' : langBtn = 'Язык'
 
     let headerHtml = `
-    <nav class="container mx-auto ">
+    <nav class="container mx-auto px-2">
         <div class="logo-button  w-full flex justify-between mb-2">
             <div class="logo"><img class="h-[70px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.75)] " src="public/images/logo.png" alt="song bird application logo"></div>
             <div class="flex items-center  text-xs">
@@ -228,7 +228,7 @@ function createHeader() {
             </div>
             
         </div>
-        <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-xl flex-wrap sm:flex-nowrap">
+        <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
             <li class="w-full sm:w-[unset] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg md:mr-2 p-2  flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
                 ${homeBtn}
             </li>

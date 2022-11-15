@@ -9,9 +9,9 @@ html, body {
   @media(max-width: 1024px) {
     font-size: 18px;
   }
-  @media(max-width: 500px) {
-    font-size: 16px;
-  }
+  //@media(max-width: 500px) {
+  //  font-size: 16px;
+  //}
 }
 
 @keyframes fade-in {
@@ -202,4 +202,10 @@ html, body {
   grid-gap: 20px;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+@media(max-width: 639px) {
+  .video-box{
+    display: none;
+  }
 }

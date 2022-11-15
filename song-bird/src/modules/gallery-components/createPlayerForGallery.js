@@ -31,7 +31,7 @@ export function createPlayerForGallery(data = null, selector = 'player',count) {
                                 <img class="play-stop-button w-[40px] mr-6 cursor-pointer" data-id="${count}" src="public/images/play-button.png"
                                      alt="play button">
                                 <input class="w-full time-line" type="range" min="0" max="100" step="0" value="0" data-id="${count}">
-                                <div class="absolute right-0 top-5  media-time"></div>
+                                <div class="absolute right-0 top-6  media-time"></div>
                             </div>
                             <div class="flex ">
                                 <div class="relative w-[50px] h-[30px]">

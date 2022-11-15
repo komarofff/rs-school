@@ -2,7 +2,7 @@ import {galleryMediaObjects} from "./createMediaForGallery";
 
 export function mediaControls() {
     let mediasArray = galleryMediaObjects.mediasArray
-    console.log('mediasArray', mediasArray)
+   // console.log('mediasArray', mediasArray)
     let gallery = document.querySelector('.gallery-page')
     gallery.addEventListener('click', findSelector)
     gallery.addEventListener('change', findSelector)
