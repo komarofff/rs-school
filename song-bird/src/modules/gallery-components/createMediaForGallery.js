@@ -8,6 +8,7 @@ export let galleryMediaObjects = {
 }
 export default async function () {
 
+    galleryMediaObjects.mediasArray = []
 
     let count = 0
     birdsData.forEach(element => {

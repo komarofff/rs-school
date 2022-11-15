@@ -27,6 +27,8 @@ export default function () {
     let startLevel = 0
     let categories
     const goToHome = document.querySelector('.go-home')
+    const goToGallery= document.querySelector('.go-gallery')
+
     const gameResultBox = document.querySelector('.game-result-box')
     let resultPlace = gameResultBox.querySelector('.result')
     resultPlace.innerHTML = 0
@@ -42,6 +44,9 @@ export default function () {
         body.classList.add('game-body')
 
         goToHome.addEventListener('click', () => {
+            mediaObject.mediasArray.forEach(el => el.pause())
+        })
+        goToGallery.addEventListener('click', () => {
             mediaObject.mediasArray.forEach(el => el.pause())
         })
 

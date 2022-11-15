@@ -33,12 +33,12 @@ export default function (homeSelector) {
         
 `
         let videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
-       // document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
-        window.onresize =()=>{
-            if(document.documentElement.clientWidth>639) {
+        // document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+        window.onresize = () => {
+            if (document.documentElement.clientWidth > 639 && videoHeight !== 0) {
                 videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
                 document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
-            }else{
+            } else {
                 document.querySelector('.video-div').style.cssText = ``
             }
         }
@@ -70,7 +70,7 @@ export default function (homeSelector) {
         // }
 
         homeButtonPlayPause.addEventListener('click', (e) => {
-            console.log('isAudiostart',isAudiostart)
+            console.log('isAudiostart', isAudiostart)
             if (!isAudiostart) {
                 homeAudio.muted = false
                 homeAudio.play()
@@ -84,7 +84,7 @@ export default function (homeSelector) {
         })
 
         document.querySelector('.go-game').addEventListener('click', () => {
-            if(!homeAudio.muted) {
+            if (!homeAudio.muted) {
                 homeAudio.muted = true
                 homeAudio.pause()
                 homeButtonPlayPause.src = 'public/images/play-button.png'
@@ -92,7 +92,7 @@ export default function (homeSelector) {
             }
         })
         document.querySelector('.go-gallery').addEventListener('click', () => {
-            if(!homeAudio.muted) {
+            if (!homeAudio.muted) {
                 homeAudio.muted = true
                 homeAudio.pause()
                 homeButtonPlayPause.src = 'public/images/play-button.png'

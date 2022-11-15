@@ -3,6 +3,7 @@ import game from './modules/gamePage'
 import home from './modules/home'
 import result from './modules/result'
 import {gallery} from "./modules/gallery"
+
 //todo
 //
 
@@ -30,7 +31,7 @@ if (localStorage.getItem('results')) {
 }
 
 let canSave = false
-const body = document.querySelector('body')
+let body = document.querySelector('body')
 
 const homePage = document.querySelector('.home-page')
 const gamePage = document.querySelector('.game-page')
@@ -56,6 +57,7 @@ if (isPreviousResult) {
 }
 
 function startHomePage() {
+    goGallery.classList.remove('hidden')
     results.result = 0
     goHome.classList.add('active-header-tab')
     goResult.classList.add('hidden')
@@ -82,6 +84,7 @@ function startHomePage() {
 goGame.addEventListener('click', startGamePage)
 
 export function startGamePage() {
+    goGallery.classList.remove('hidden')
     results.result = 0
     goGame.classList.add('active-header-tab')
     goGame.classList.add('hidden')
@@ -119,6 +122,7 @@ export function startResultPage(canSaveResults) {
     } else {
         canSave = false
     }
+    goGallery.classList.remove('hidden')
     goGame.classList.remove('active-header-tab')
     goGame.classList.add('hidden')
     goHome.classList.remove('active-header-tab')
@@ -144,30 +148,32 @@ export function startResultPage(canSaveResults) {
 goGallery.addEventListener('click', startGallery)
 
 function startGallery() {
-    results.result = 0
-    galleryPage.classList.remove('hidden')
+    goGallery.classList.add('hidden')
+        results.result = 0
+        galleryPage.classList.remove('hidden')
 
-    galleryButton.classList.remove('hidden')
-    galleryButton.classList.add('active-header-tab')
-    goGame.classList.remove('active-header-tab')
-    goGame.classList.remove('hidden')
-    goHome.classList.remove('active-header-tab')
-    goResult.classList.add('hidden')
-    goResult.classList.remove('active-header-tab')
+        galleryButton.classList.remove('hidden')
+        galleryButton.classList.add('active-header-tab')
+        goGame.classList.remove('active-header-tab')
+        goGame.classList.remove('hidden')
+        goHome.classList.remove('active-header-tab')
+        goResult.classList.add('hidden')
+        goResult.classList.remove('active-header-tab')
 
-    goPreviousResult.classList.add('hidden')
+        goPreviousResult.classList.add('hidden')
 
-    gamePage.classList.add('hidden')
-    homePage.classList.add('hidden')
-    resultPage.classList.add('hidden')
-    gameResultBox.classList.add('hidden')
+        gamePage.classList.add('hidden')
+        homePage.classList.add('hidden')
+        resultPage.classList.add('hidden')
+        gameResultBox.classList.add('hidden')
 
-    eventsObject.isHomePage = false
-    eventsObject.isGamePage = false
-    eventsObject.isResultPage = false
-    eventsObject.isGalleryPage = true
+        eventsObject.isHomePage = false
+        eventsObject.isGamePage = false
+        eventsObject.isResultPage = false
+        eventsObject.isGalleryPage = true
 
-    app()
+        app()
+
 }
 
 app()
@@ -177,14 +183,17 @@ function app() {
         isPreviousResult = true
     }
     if (eventsObject.isGamePage) {
+        body = document.querySelector('body')
         body.classList.add('game-body')
         body.classList.remove('gallery-body')
         body.classList.remove('home-body')
+
         game()
     } else {
         gamePage.classList.add('hidden')
     }
     if (eventsObject.isHomePage) {
+        body = document.querySelector('body')
         body.classList.remove('game-body')
         body.classList.remove('gallery-body')
         body.classList.add('home-body')
@@ -198,6 +207,7 @@ function app() {
         resultPage.classList.add('hidden')
     }
     if (eventsObject.isGalleryPage) {
+        body = document.querySelector('body')
         body.classList.remove('game-body')
         body.classList.remove('home-body')
         body.classList.add('gallery-body')
