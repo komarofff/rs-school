@@ -28,7 +28,7 @@ const config = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[hash].js',
         //assetModuleFilename: 'images/[hash][ext][query]'
     },
     resolve: {
@@ -111,7 +111,9 @@ const config = {
             templateParameters: globals,
         }),
         new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css'
+        })
     ]
 };
 
