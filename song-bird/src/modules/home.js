@@ -1,3 +1,4 @@
+import {language} from "../index";
 export default function (homeSelector) {
 
     document.addEventListener('DOMContentLoaded', async () => {
@@ -12,7 +13,13 @@ export default function (homeSelector) {
         } catch (e) {
             console.log(e)
         }
-//https://yandex.by/video/preview/17009047861238276328
+let homeTitle= ''
+let homeSubtitle= ''
+let homeInviting= ''
+
+language.condition ? homeTitle = 'Welcome to game!' : homeTitle = 'Добро пожаловать в игру!'
+language.condition ? homeSubtitle = '<h2>Immerse yourself in the world of a variety of bird voices!</h2>\n  <h2>Take an exciting quiz and find out how many bird songs you can guess!</h2>' : homeSubtitle = '<h2>Окунитесь в мир разнообразия птичьих голосов!</h2>\n          <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>'
+language.condition ? homeInviting = 'For starting game press button <strong class="start-game-button">"Start game"</strong>' : homeInviting = 'Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong>'
 
         homeSelector.innerHTML = `
 <div class="rounded-lg sm:pt-4 my-4 relative sm:overflow-hidden h-full sm:h-[60vh] ">
@@ -21,10 +28,10 @@ export default function (homeSelector) {
      </video>     
      
       <div class="video-div z-20 relative sm:absolute left-0 top-0 right-0 bottom-0 w-full   flex justify-start items-center flex-col bg-white bg-opacity-[90%] sm:bg-opacity-[70%] rounded-lg shadow-xl text-xl md:text-2xl mt-4 p-4 text-center">
-          <h1 class="font-bold mt-12 sm:mt-0">Добро пожаловать в игру!</h1>
-          <h2>Окунитесь в мир разнообразия птичьих голосов!</h2>
-          <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>
-          <h2 class="mt-4 text-lg">Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong> </h2>
+          <h1 class="font-bold mt-12 sm:mt-0">${homeTitle}</h1>
+          ${homeSubtitle}
+          <h2 class="mt-4 text-lg">${homeInviting} </h2>
+          
       </div>
       
       <img class="absolute w-[50px]   home-button z-30 sm:left-2 left-1/2 -translate-x-1/2 sm:translate-x-0 top-8 sm:top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">

@@ -1,3 +1,4 @@
+import {language} from '../../index'
 export function createPlayer(data = null, selector = 'player') {
     // рисуем проигрыватель для каждой зоны свой ( определяем селектором)
     let name = '*****'
@@ -6,9 +7,9 @@ export function createPlayer(data = null, selector = 'player') {
     let species = ''
     let image = 'public/images/bird-shadow.jpg'
     if (data) {
-        name = data.name
+      language.condition ? name = data.nameLat : name = data.name
         image = data.image
-        description = data.description
+      language.condition ?  description = data.descriptionLat : description = data.description
         if(data.species) {
             speciesText = ' (' + data.species + ')'
             species = `<span class="w-full sm:w-[unset] ml-2 text-lg"> ${speciesText}</span>`

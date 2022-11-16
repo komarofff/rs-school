@@ -8,11 +8,13 @@ import {createHtml} from "./modules/createHtml"
 //
 
 // по умолчанию язык русский
-export let language = false
-// кнопка переключения
-// if(localStorage.getItem('language')){
-//     language = false
-// }
+export let language = {}
+//кнопка переключения
+if(localStorage.getItem('language')){
+    language.condition = true
+}else{
+    language.condition = false
+}
 
  createHtml()
 
@@ -180,7 +182,7 @@ function startGallery() {
 
 app()
 
-function app() {
+export function app() {
     if (localStorage.getItem('results') && !canSave) {
         isPreviousResult = true
     }

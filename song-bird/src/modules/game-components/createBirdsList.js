@@ -1,4 +1,5 @@
 import {birdsData} from './birdsData'
+import {language} from '../../index'
 export function createBirdsList() {
     // фомируем список птиц в задании в зависимости от типа птиц
     const activeTab = document.querySelector('.active-tab')
@@ -8,9 +9,16 @@ export function createBirdsList() {
     let idSubArr = null
     birdsData.forEach((el, idx) => {
         el.forEach((elem, id) => {
-            if (elem.titleRus === searchElement) {
-                idArr = idx
-                idSubArr = id
+            if(language.condition) {
+                if (elem.titleLat === searchElement) {
+                    idArr = idx
+                    idSubArr = id
+                }
+            } else{
+                if (elem.titleRus === searchElement) {
+                    idArr = idx
+                    idSubArr = id
+                }
             }
         })
     })
@@ -39,7 +47,7 @@ export function createBirdsList() {
             let li = document.createElement('li')
             li.className = 'list-item  py-2 pl-8 sm:pl-5 w-full cursor-pointer  transition duration-300 border-b border-r md:border-r-0 border-l md:border-l-0 border-t md:border-t-0  border-blue-100 hover:bg-blue-500 hover:bg-opacity-75 hover:text-white relative text-sm'
             li.setAttribute('data-name', el.species)
-            li.innerHTML = el.name
+            li.innerHTML = language.condition ? el.nameLat : el.name
             newList.appendChild(li)
         }
     })

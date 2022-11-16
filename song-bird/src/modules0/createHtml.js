@@ -1,7 +1,6 @@
 import {language} from "../index";
 
 export async function createHtml() {
-    console.log(language.condition)
     let homeBtn = ''
     let resultatBtn = ''
     let yourResultsBtn = ''
@@ -10,14 +9,14 @@ export async function createHtml() {
     let startGameBtn = ''
     let langBtn = ''
     let nextLevel = ''
-    language.condition ? homeBtn = 'Home' : homeBtn = 'Главная'
-    language.condition ? resultatBtn = 'Result' : resultatBtn = 'Результат'
-    language.condition ? yourResultsBtn = 'Your results' : yourResultsBtn = 'Ваши результаты'
-    language.condition ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результат'
-    language.condition ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
-    language.condition ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
-    language.condition ? langBtn = 'Language' : langBtn = 'Язык'
-    language.condition ? nextLevel  = 'Next level' : nextLevel = 'Следующий уровень'
+    language ? homeBtn = 'Home' : homeBtn = 'Главная'
+    language ? resultatBtn = 'Result' : resultatBtn = 'Результат'
+    language ? yourResultsBtn = 'Your results' : yourResultsBtn = 'Ваши результаты'
+    language ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результат'
+    language ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
+    language ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
+    language ? langBtn = 'Language' : langBtn = 'Язык'
+    language ? nextLevel  = 'Next level' : nextLevel = 'Следующий уровень'
 
     let pageHtml = `
 <header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header backdrop-blur-sm bg-white/30">
@@ -25,17 +24,16 @@ export async function createHtml() {
         <div class="logo-button  w-full flex justify-between mb-2">
             <div class="logo"><img class="h-[70px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.75)] " src="public/images/logo.png" alt="song bird application logo"></div>
             <div class="flex items-center  text-xs">
-               <label class="drop-shadow-[0_2px_2px_rgba(255,255,255,0.75)] text-black" for="language">${langBtn}</label>
-              <select class="select ml-1  outline-none text-xs " id="language" name="language" >
-            <!--  <option value="${langBtn}" selected disabled>${langBtn}</option>-->
-              <option value="RU">RU</option>
+              <!-- <label for="language">${langBtn}</label>-->
+              <select class="select ml-1  outline-none text-xs" id="language" name="language">
+              <option value="RU" selected>RU</option>
               <option value="Engl">ENGL</option>
               </select>
             </div>
             
         </div>
         <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
-            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
                 ${homeBtn}
             </li>
             <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box  bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
@@ -98,17 +96,8 @@ export async function createHtml() {
     body.innerHTML = ''
     body.innerHTML =  pageHtml
 
-    document.querySelector('.select').addEventListener('change',(e)=>{
-        e.preventDefault()
-      if( !language.condition) {
-          language.condition = true
-          localStorage.setItem('language',true)
-
-      }else{
-          language.condition = false
-          localStorage.removeItem('language')
-      }
-        window.location.reload()
-
-    })
+    // document.querySelector('.select').addEventListener('change',()=>{
+    //     language = !language
+    //     createHeader()
+    // })
 }

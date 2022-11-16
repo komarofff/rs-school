@@ -3,8 +3,7 @@ import {createBirdsList} from './game-components/createBirdsList'
 import {createPlayer} from './game-components/createPlayer'
 import {createMedia} from './game-components/createMedia'
 import {getRandom} from './game-components/getRandom'
-import {eventsObject, startResultPage,results} from "../index";
-
+import {eventsObject, language, results, startResultPage} from "../index";
 //todo
 // result && result при переходе на новый этап
 // если уже выбран неверный результат проверять - и не отнимать баллы за нажатие на него еще раз
@@ -27,7 +26,7 @@ export default function () {
     let startLevel = 0
     let categories
     const goToHome = document.querySelector('.go-home')
-    const goToGallery= document.querySelector('.go-gallery')
+    const goToGallery = document.querySelector('.go-gallery')
 
     const gameResultBox = document.querySelector('.game-result-box')
     let resultPlace = gameResultBox.querySelector('.result')
@@ -63,12 +62,13 @@ export default function () {
         }
 
         let counter = 5
-
         let birdsList = null
+        let playerMessage = ''
+        language.condition ? playerMessage = '<p>Listen to the player. Select a bird from the list</p>' : playerMessage = '<p>Послушайте плеер. Выберите птицу из списка</p>'
 
         const playerSection = document.querySelector('.player-section')
         const solutionSection = document.querySelector('.solution')
-        solutionSection.innerHTML = '<p>Послушайте плеер. Выберите птицу из списка</p>'
+        solutionSection.innerHTML = playerMessage
 
         const successAudio = new Audio('public/audio/success.mp3')
         const wrongAudio = new Audio('public/audio/wrong.mp3')
@@ -130,17 +130,14 @@ export default function () {
             // console.log(e.target)
             if (e.target.dataset.name) {
                 if (e.target.dataset.name === finishData.species && !isFinishStage) {
-                    console.log('правильно || здесь надо подготовить очки для следующей игры')
-
+                    //  console.log('правильно || здесь надо подготовить очки для следующей игры')
                     results.result += counter
-
                     resultPlace.innerHTML = results.result
                     e.target.classList.add('success')
                     // если правильно ответили
                     showSolutionPlayer(finishData)
                     successAudio.volume = 1
                     successAudio.play()
-
                     // останавливаем все аудио и на кнопках рисуем play
                     mediaObject.startMedia.pause()
                     mediaObject.startPlayStopButton.src = "public/images/play-button.png"
@@ -152,9 +149,8 @@ export default function () {
                     }
                     mediaObject.mediasArray.forEach(el => el.pause())
 
-
                     playerSection.querySelector('.bird-image').src = finishData.image
-                    playerSection.querySelector('.title').innerHTML = finishData.name
+                    playerSection.querySelector('.title').innerHTML = language.condition ? finishData.nameLat : finishData.name
                     isFinishStage = !isFinishStage
                     if (birdsList.idArr === 5) {
                         mediaObject.mediasArray.forEach(el => el.pause())
@@ -173,8 +169,7 @@ export default function () {
                     birdsList.arr.forEach((el, id) => {
                         if (el.species === e.target.dataset.name) {
                             if (isFinishStage) {
-                                console.log('не правильно и игра  ЗАКОНЧЕНА  ')
-
+                                //console.log('не правильно и игра  ЗАКОНЧЕНА  ')
                                 mediaObject.mediasArray.forEach(el => el.pause())
                                 mediaObject.startPlayStopButton.src = "public/images/play-button.png"
                                 if (mediaObject.answerPlayStopButton) {
@@ -187,7 +182,7 @@ export default function () {
                                     if (idx > 0) element.pause()
 
                                 })
-                                console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
+                                // console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
 
                                 if (counter > 0 && !e.target.classList.contains('error')) {
                                     counter--

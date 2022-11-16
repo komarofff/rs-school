@@ -1,10 +1,10 @@
 import {birdsData} from "./birdsData";
-
+import {language} from '../../index'
 export function createBirdsCategories() {
     // формируем список заданий (типы птиц)
     let categoriesList = []
     for (let i = 0; i < birdsData.length; i++) {
-        categoriesList.push(birdsData[i][0].titleRus)
+       language.condition ? categoriesList.push(birdsData[i][0].titleLat) : categoriesList.push(birdsData[i][0].titleRus)
     }
     let questionsBox = document.querySelector('.questions-title')
     questionsBox.innerHTML = ''
