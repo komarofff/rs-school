@@ -56,7 +56,10 @@ export function mediaControls() {
                 el.classList.remove('active-tab')
             })
             e.target.classList.add('active-tab')
-            mediasArray.forEach(el => el.player.pause())
+            mediasArray.forEach(el => {
+                el.player.pause()
+                document.querySelector(`.`+el.className).querySelector('.play-stop-button').src = "public/images/play-button.png"
+            })
 
 
         }
