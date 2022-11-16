@@ -4,6 +4,32 @@ import {galleryMediaObjects} from "./createMediaForGallery";
 export function mediaControls() {
 
 
+    // tabs switcher
+    let tabsContainer = document.querySelector('.categories-gallery')
+    let tabsInContainer = tabsContainer.querySelectorAll('.tab')
+
+    let allTabs = document.querySelectorAll('.inner-tab')
+    tabsContainer.addEventListener('click', tabsSwitcher)
+
+    function tabsSwitcher(e) {
+        console.log(e.target.dataset.tab)
+        if (e.target.classList.contains('tab')) {
+            let tabName = e.target.dataset.tab
+            allTabs.forEach(element =>{
+                if(element.classList.contains(tabName)){
+                    element.classList.remove('hidden')
+                }else{
+                    element.classList.add('hidden')
+                }
+            })
+            tabsInContainer.forEach(el => {
+                el.classList.remove('active-tab')
+            })
+            e.target.classList.add('active-tab')
+        }
+    }
+    ///
+
     let mediasArray = galleryMediaObjects.mediasArray
 
     const goToHome = document.querySelector('.go-home')
@@ -15,7 +41,7 @@ export function mediaControls() {
         return false
     })
     goToGame.addEventListener('click', () => {
-        console.log('game')
+        //console.log('game')
         mediasArray.forEach(el => el.player.pause())
         //mediasArray = []
         return false
@@ -23,7 +49,7 @@ export function mediaControls() {
 
     mediasArray = galleryMediaObjects.mediasArray
     // if(mediasArray) {
-    console.log('mediasArray', mediasArray)
+    //console.log('mediasArray', mediasArray)
     let gallery = document.querySelector('.gallery-page')
     gallery.addEventListener('click', findSelector)
     gallery.addEventListener('change', findSelector)

@@ -1,7 +1,7 @@
 import {language} from "../index";
 
 export async function createHtml() {
-    console.log(language.condition)
+
     let homeBtn = ''
     let resultatBtn = ''
     let yourResultsBtn = ''
@@ -17,37 +17,36 @@ export async function createHtml() {
     language.condition ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
     language.condition ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
     language.condition ? langBtn = 'Language' : langBtn = 'Язык'
-    language.condition ? nextLevel  = 'Next level' : nextLevel = 'Следующий уровень'
+    language.condition ? nextLevel = 'Next level' : nextLevel = 'Следующий уровень'
 
     let pageHtml = `
 <header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header backdrop-blur-sm bg-white/30">
     <nav class="container mx-auto px-2">
         <div class="logo-button  w-full flex justify-between mb-2">
-            <div class="logo"><img class="h-[70px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.75)] " src="public/images/logo.png" alt="song bird application logo"></div>
-            <div class="flex items-center  text-xs">
-               <label class="drop-shadow-[0_2px_2px_rgba(255,255,255,0.75)] text-black" for="language">${langBtn}</label>
-              <select class="select ml-1  outline-none text-xs " id="language" name="language" >
-            <!--  <option value="${langBtn}" selected disabled>${langBtn}</option>-->
-              <option value="RU">RU</option>
-              <option value="Engl">ENGL</option>
-              </select>
+            <div class="logo"><img class="w-[50vw] sm:w-[220px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.95)] " src="public/images/logo.png" alt="song bird application logo"></div>
+            <div class="flex items-center  text-xs language-section">
+               <p class="drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)] text-white mb-0 mr-2" >${langBtn}</p>
+              
+              <button data-lang="ru" class="ru-language mr-1 p-1 rounded  cursor-pointer active hover:bg-blue-500   transition duration-300 drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)] text-white">RU</button> 
+              <span class="drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)] text-white ">/</span>
+              <button data-lang="en" class="en-language ml-1 p-1 rounded cursor-pointer   hover:bg-blue-500 transition duration-300 drop-shadow-[0_2px_2px_rgba(0,0,0,0.95)] text-white">EN</button>
             </div>
             
         </div>
         <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
-            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  hover:shadow-blue-700/50">
                 ${homeBtn}
             </li>
             <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box  bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
                 <span class="mr-2">${resultatBtn}:</span> <span class="result">0</span>
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-result hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+            <!--<li class="w-full sm:w-[unset] my-1 sm:my-0 go-result   bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
                 ${yourResultsBtn}
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+            </li>-->
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  ">
                 ${gameResultsBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  ">
                 ${galleryBtn}
             </li>
             <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-blue-700 text-white border border-blue-700 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-white  hover:text-blue-700  ">
@@ -77,11 +76,11 @@ export async function createHtml() {
     <div class="gallery-page p-2  container mx-auto transition duration-300 min-h-full w-full grid grow relative transition duration-300 fade-in bg-white bg-opacity-[95%] rounded-lg p-2 grid my-2"></div>
 </main>
 <footer class="p-2  container-fluid  backdrop-blur-sm bg-white/30">
-    <div class="container mx-auto flex justify-between items-center font-bold text-blue-900 flex-wrap md:flex-nowrap">
-        <p class="w-full md:w-[unset] mb-0 bg-gray-50 bg-opacity-75 p-2 hover:bg-opacity-100 transition duration-300 text-center ">
+    <div class="container mx-auto flex justify-between items-center font-bold text-blue-900 flex-wrap md:flex-nowrap px-2 text-sm">
+        <p class="w-full md:w-[unset] mb-0 bg-gray-50 bg-opacity-75 px-1 py-2 hover:bg-opacity-100 transition duration-300 text-center ">
             <span class="mr-2">© 2022.</span>
             <a target="_blank" href="https://github.com/komarofff"
-               class="text-blue-900 hover:text-gray-900 transition duration-300 ">Github - Anatoliy Komarov</a>
+               class="text-blue-900  hover:text-gray-900 transition duration-300 ">Github - Anatoliy Komarov</a>
         </p>
         <p class="go-gallery mt-2 md:mt-0 w-full rounded cursor-pointer md:w-[unset] mb-0 bg-gray-50 bg-opacity-75 p-2 hover:bg-blue-700  hover:text-white transition duration-300 text-center  font-bold ">
             ${galleryBtn}
@@ -96,19 +95,38 @@ export async function createHtml() {
    `
     let body = document.querySelector('body')
     body.innerHTML = ''
-    body.innerHTML =  pageHtml
+    body.innerHTML = pageHtml
 
-    document.querySelector('.select').addEventListener('change',(e)=>{
-        e.preventDefault()
-      if( !language.condition) {
-          language.condition = true
-          localStorage.setItem('language',true)
+    // language switcher
 
-      }else{
-          language.condition = false
-          localStorage.removeItem('language')
-      }
+
+    let ruBtn = document.querySelector('.ru-language')
+    let enBtn = document.querySelector('.en-language')
+    ruBtn.addEventListener('click', changeLanguage)
+    enBtn.addEventListener('click', changeLanguage)
+
+    if(language.condition){
+        enBtn.classList.add('active')
+        ruBtn.classList.remove('active')
+    }else{
+        enBtn.classList.remove('active')
+        ruBtn.classList.add('active')
+    }
+
+    function changeLanguage(e)  {
+        let lang = e.target.dataset.lang
+        if (lang === 'en') {
+            language.condition = true
+            localStorage.setItem('language', true)
+            enBtn.classList.add('active')
+            ruBtn.classList.remove('active')
+        } else {
+            language.condition = false
+            localStorage.removeItem('language')
+            enBtn.classList.remove('active')
+            ruBtn.classList.add('active')
+        }
         window.location.reload()
 
-    })
+    }
 }

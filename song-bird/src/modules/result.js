@@ -54,13 +54,13 @@ export default function (resultSelector, cansaveResults) {
         if (i < 10) {
             resultsSting += `<tr  class = "border-b" >
                
-            <td class="text-xl text-gray-900 font-light sm:px-6 px-2  py-4 whitespace-nowrap">
+            <td class="text-base font-bold sm:font-normal md:text-xl text-gray-900  sm:px-6 px-2  py-4 whitespace-nowrap">
                 ${data[i].date}
             </td>
-            <td class="text-xl text-gray-900 font-light sm:px-6 px-2  py-4 whitespace-nowrap">
+            <td class="text-base font-bold sm:font-normal md:text-xl text-gray-900  sm:px-6 px-2  py-4 whitespace-nowrap">
                 ${data[i].time}
             </td>
-            <td class="text-xl text-gray-900 font-light sm:px-6 px-2  py-4 whitespace-nowrap">
+            <td class="text-base font-bold sm:font-normal md:text-xl text-gray-900  sm:px-6 px-2  py-4 whitespace-nowrap">
                 ${data[i].result}
             </td>
         </tr>
@@ -73,20 +73,20 @@ export default function (resultSelector, cansaveResults) {
         <div class="h-[90%] flex justify-center items-center flex-col bg-white bg-opacity-[90%] rounded-lg shadow-xl text-2xl my-4 p-4 text-center">
         <h1 class="font-bold">${yourRes}</h1>
         <div class="flex flex-col">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
+  <div class="">
+    <div class="py-2 inline-block min-w-full ">
+      <div class="">
         <table class="min-w-full">
           <thead class="border-b">
             <tr>
               
-              <th scope="col" class="text-xl font-medium text-gray-900 sm:px-6 px-2 py-4 text-left">
+              <th scope="col" class="text-base font-bold sm:font-normal md:text-xl text-gray-900 sm:px-6 px-2 py-4 text-left">
                 ${datM}
               </th>
-              <th scope="col" class="text-xl font-medium text-gray-900 sm:px-6 px-2 py-4 text-left">
+              <th scope="col" class="text-base font-bold sm:font-normal md:text-xl text-gray-900 sm:px-6 px-2 py-4 text-left">
                 ${timeM}
               </th>
-              <th scope="col" class="text-xl font-medium text-gray-900 sm:px-6 px-2 py-4 text-left">
+              <th scope="col" class="text-base font-bold sm:font-normal md:text-xl text-gray-900 sm:px-6 px-2 py-4 text-left">
                 ${resM}
               </th>
             </tr>

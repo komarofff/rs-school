@@ -1,5 +1,5 @@
 import {language} from '../../index'
-export function createPlayerForGallery(data = null, selector = 'player',count) {
+export function createPlayerForGallery(data = null, selector = 'player',count,category,additionalSelector) {
     // рисуем проигрыватель для каждой зоны свой ( определяем селектором)
     let name = '*****'
     let description = ''
@@ -12,17 +12,18 @@ export function createPlayerForGallery(data = null, selector = 'player',count) {
        language.condition ? description = data.descriptionLat : description = data.description
         if(data.species) {
             speciesText = ' (' + data.species + ')'
-            species = `<span class="w-full  ml-2 text-xs"> ${speciesText}</span>`
+            species = `<span class="w-full  ml-2 text-sm"> ${speciesText}</span>`
         }
     }
     let boxHtml = `
+<div class="${category} ${additionalSelector} inner-tab">
     <div class="flex flex-col items-center ${selector} min-h-full fade-in border border-gray-50 p-2 rounded shadow-xl bg-white" data-id="${count}">
-    <div class="w-full flex flex-wrap  flex-col  items-center text-xs ">
+    <div class="w-full flex flex-wrap  flex-col  items-center text-sm ">
                 <div class="no-image mt-2  h-[200px] w-[250px] overflow-hidden rounded-xl shadow-xl">
                     <img class="object-cover  w-full h-full bird-image transition duration-300 fade-in" src="${image}" alt="name">
                 </div>
                 <div class="flex flex-col w-full items-start">
-                    <p class="title text-xs font-bold mb-0 flex items-center   justify-center w-full  my-2 ">
+                    <p class="title text-sm font-bold mb-0 flex items-center   justify-center w-full  my-2 ">
                       <span class="w-full sm:w-[unset] text-center">${name}</span>  
                       ${species}
                     </p>
@@ -45,9 +46,9 @@ export function createPlayerForGallery(data = null, selector = 'player',count) {
                     </div>
                 </div>
             </div>
-                <div class="bird-description mt-3 text-xs">${description}</div>
+                <div class="bird-description mt-3 text-sm">${description}</div>
       </div>
-            
+    </div>        
     `
     return boxHtml
 }
