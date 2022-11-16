@@ -3,7 +3,7 @@ import game from './modules/gamePage'
 import home from './modules/home'
 import result from './modules/result'
 import {gallery} from "./modules/gallery"
-
+import {createHtml} from "./modules/createHtml"
 //todo
 //
 
@@ -14,7 +14,9 @@ export let language = false
 //     language = false
 // }
 
-createHeader()
+ createHtml()
+
+
 
 export let eventsObject = {
     isHomePage: true,
@@ -218,65 +220,7 @@ function app() {
     }
 }
 
-function createHeader() {
-    let homeBtn = ''
-    let resultatBtn = ''
-    let yourResultsBtn = ''
-    let gameResultsBtn = ''
-    let galleryBtn = ''
-    let startGameBtn = ''
-    let langBtn = ''
-    language ? homeBtn = 'Home' : homeBtn = 'Главная'
-    language ? resultatBtn = 'Result' : resultatBtn = 'Результат'
-    language ? yourResultsBtn = 'Your results' : yourResultsBtn = 'Ваши результаты'
-    language ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результат'
-    language ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
-    language ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
-    language ? langBtn = 'Language' : langBtn = 'Язык'
 
-    let headerHtml = `
-    <nav class="container mx-auto px-2">
-        <div class="logo-button  w-full flex justify-between mb-2">
-            <div class="logo"><img class="h-[70px] drop-shadow-[0_5px_5px_rgba(255,255,255,0.75)] " src="public/images/logo.png" alt="song bird application logo"></div>
-            <div class="flex items-center  text-xs">
-              <!-- <label for="language">${langBtn}</label>-->
-              <select class="select ml-1  outline-none text-xs" id="language" name="language">
-              <option value="RU" selected>RU</option>
-              <option value="Engl">ENGL</option>
-              </select>
-            </div>
-            
-        </div>
-        <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-home  active-header-tab cursor-pointer  bg-gray-50 bg-opacity-75 rounded  min-h-full  shadow-lg md:mr-2 p-2  flex items-center justify-center  transition duration-300 relative hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                ${homeBtn}
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box  bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
-                <span class="mr-2">${resultatBtn}:</span> <span class="result">0</span>
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-result hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                ${yourResultsBtn}
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                ${gameResultsBtn}
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                ${galleryBtn}
-            </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-blue-700 text-white border border-blue-700 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-white  hover:text-blue-700  ">
-                ${startGameBtn}
-            </li>
-        </ul>
-    </nav>
-   `
-    document.querySelector('.header').innerHTML = ''
-    document.querySelector('.header').innerHTML = headerHtml
-
-    // document.querySelector('.select').addEventListener('change',()=>{
-    //     language = !language
-    //     createHeader()
-    // })
-}
 
 
 
