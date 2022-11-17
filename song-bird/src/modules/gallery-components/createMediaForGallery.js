@@ -10,7 +10,8 @@ export let galleryMediaObjects = {
 export default async function () {
 
     galleryMediaObjects.mediasArray = []
-    let catHtml = '<div class="container mx-auto  my-2 gallery-container"><div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 items-center transition duration-300 categories-gallery text-base font-bold">'
+    let catHtml = '<div class="px-2 py-3  mt-2 gallery-container bg-white bg-opacity-[95%] rounded-lg ">' +
+        '<div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 items-center transition duration-300 categories-gallery text-base font-bold ">'
     birdsData.forEach((element, id) => {
 
         let tabName = element[0].titleLat.replace(/\s/g, '-')

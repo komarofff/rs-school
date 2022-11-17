@@ -73,7 +73,7 @@ export async function createHtml() {
         </p>
     </div>
     <div class="hidden results-page p-2  container mx-auto   transition duration-300 fade-in"></div>
-    <div class="gallery-page p-2  container mx-auto transition duration-300 min-h-full w-full grid grow relative transition duration-300 fade-in bg-white bg-opacity-[95%] rounded-lg p-2 grid my-2"></div>
+    <div class="gallery-page p-2  container mx-auto px-2  min-h-full w-full grid grow relative transition duration-300 fade-in  p-2 grid my-2"></div>
 </main>
 <footer class="p-2  container-fluid  bg-blue-900 bg-opacity-25">
     <div class="container mx-auto flex justify-between items-center font-bold text-blue-900 flex-wrap md:flex-nowrap px-2 text-sm">

@@ -16,7 +16,7 @@ export function createPlayerForGallery(data = null, selector = 'player',count,ca
         }
     }
     let boxHtml = `
-<div class="${category} ${additionalSelector} inner-tab">
+<div class="${category} ${additionalSelector} inner-tab ">
     <div class="flex flex-col items-center ${selector} min-h-full fade-in border border-gray-50 p-2 rounded shadow-xl bg-white" data-id="${count}">
     <div class="w-full flex flex-wrap  flex-col  items-center text-sm ">
                 <div class="no-image mt-2  h-[200px] w-[250px] overflow-hidden rounded-xl shadow-xl">

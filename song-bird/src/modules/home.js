@@ -42,9 +42,11 @@ language.condition ? homeInviting = 'For starting game press button <strong clas
         let videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
         // document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
         window.onresize = () => {
-            if (document.documentElement.clientWidth > 639 && videoHeight !== 0) {
+            if (document.documentElement.clientWidth > 639 ) {
                 videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
-                document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+                if(videoHeight !== 0) {
+                    document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+                }
             } else {
                 document.querySelector('.video-div').style.cssText = ``
             }
