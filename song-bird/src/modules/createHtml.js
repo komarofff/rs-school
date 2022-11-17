@@ -34,7 +34,7 @@ export async function createHtml() {
             
         </div>
         <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
-            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home hover:border-white hover:border  active-header-tab cursor-pointer  bg-white  bg-opacity-100 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  hover:shadow-blue-700/50">
+            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home border border-blue-700 hover:border-white hover:border  active-header-tab cursor-pointer  bg-white  bg-opacity-100 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  hover:shadow-blue-700/50">
                 ${homeBtn}
             </li>
             <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
@@ -43,10 +43,10 @@ export async function createHtml() {
             <!--<li class="w-full sm:w-[unset] my-1 sm:my-0 go-result   bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
                 ${yourResultsBtn}
             </li>-->
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded border border-blue-700 min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
                 ${gameResultsBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded border border-blue-700 min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
                 ${galleryBtn}
             </li>
             <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-blue-700 text-white border border-blue-700 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-white     hover:text-blue-700  ">
