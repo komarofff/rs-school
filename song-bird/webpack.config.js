@@ -8,6 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const globals = require('./src/globals.js')
 
+
+
 function generateHtmlPlugins(templateDir) {
     const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir));
     return templateFiles.map(item => {
@@ -65,13 +67,7 @@ const config = {
                     'sass-loader',
                 ]
             },
-            // {
-            //     test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
-            //     loader: 'file-loader',
-            //     options: {
-            //         name: 'assets/img/[name].[ext]',
-            //     },
-            // }
+
             {
                 test: /\.(?:ico|gif|png|jpg|jpeg|svg)$/i,
                 type: 'asset',
@@ -93,6 +89,9 @@ const config = {
                 type: 'asset/source',
             }
         ]
+    },
+    performance: {
+        hints: false
     },
     plugins: [
         new CopyPlugin({

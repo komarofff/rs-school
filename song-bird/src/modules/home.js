@@ -28,13 +28,13 @@ language.condition ? homeInviting = 'For starting game press button <strong clas
      </video>     
      
       <div class="video-div z-20 relative sm:absolute left-0 top-0 right-0 bottom-0 w-full   flex justify-start items-center flex-col bg-white bg-opacity-[90%] sm:bg-opacity-[70%] rounded-lg shadow-xl text-xl md:text-2xl mt-4 p-4 text-center">
-          <h1 class="font-bold mt-12 sm:mt-0">${homeTitle}</h1>
+          <h1 class="font-bold mt-8 sm:mt-0">${homeTitle}</h1>
           ${homeSubtitle}
           <h2 class="mt-4 text-lg">${homeInviting} </h2>
           
       </div>
       
-      <img class="absolute w-[50px]   home-button z-30 sm:left-2 left-1/2 -translate-x-1/2 sm:translate-x-0 top-8 sm:top-6 cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
+      <img class="absolute w-[50px]   home-button z-30 left-2   top-6   cursor-pointer" src="public/images/play-button.png" alt="play-stop-button">
       
 </div>
         
