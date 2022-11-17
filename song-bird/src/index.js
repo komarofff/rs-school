@@ -1,3 +1,4 @@
+import "./styles/style.css";
 import "./styles/styles.scss";
 import game from './modules/gamePage'
 import home from './modules/home'
