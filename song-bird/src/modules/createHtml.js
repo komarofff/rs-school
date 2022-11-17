@@ -22,7 +22,7 @@ export async function createHtml() {
     let pageHtml = `
 <header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header bg-blue-900 bg-opacity-25">
     <nav class="container mx-auto px-2">
-        <div class="logo-button  w-full flex justify-between mb-2">
+        <div class="logo-button  w-full flex justify-between">
             <div class="logo"><img class="w-[50vw] sm:w-[220px]" src="public/images/logo.png" alt="song bird application logo"></div>
             <div class="flex items-center  text-xs language-section">
                <p class=" text-white mb-0 mr-2" >${langBtn}</p>
@@ -33,30 +33,30 @@ export async function createHtml() {
             </div>
             
         </div>
-        <ul class="flex justify-between items-center items-stretch text-blue-900 font-bold text-sm flex-wrap sm:flex-nowrap">
-            <li class="w-full sm:w-[unset] min-w-[100px] my-1 sm:my-0 go-home border border-blue-700 hover:border-white hover:border  active-header-tab cursor-pointer  bg-white  bg-opacity-100 rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:bg-opacity-100 hover:text-white cursor-pointer  hover:shadow-blue-700/50">
+        <ul class=" text-blue-900 font-bold text-xs sm:text-sm grid grid-cols-3 gap-1 sm:gap-2">
+            <li class="w-full  my-1 sm:my-0 go-home border border-white  active-header-tab cursor-pointer  bg-white   rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:text-white cursor-pointer  ">
                 ${homeBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-xl flex items-center justify-center ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-lg flex items-center justify-center ">
                 <span class="mr-2">${resultatBtn}:</span> <span class="result">0</span>
             </li>
             <!--<li class="w-full sm:w-[unset] my-1 sm:my-0 go-result   bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
                 ${yourResultsBtn}
             </li>-->
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded border border-blue-700 min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
                 ${gameResultsBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded border border-blue-700 min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 hover:bg-opacity-100 hover:text-white  hover:border-white hover:border cursor-pointer  ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 border border-white  hover:text-white   cursor-pointer  ">
                 ${galleryBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-blue-700 text-white border border-blue-700 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 cursor-pointer hover:bg-white     hover:text-blue-700  ">
+            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-white  rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 hover:text-white  hover:bg-blue-700 cursor-pointer  border border-white      ">
                 ${startGameBtn}
             </li>
         </ul>
     </nav>
 </header>
 <main class="container-fluid    h-full grow flex flex-col ">
-    <div class="home-page p-2 container mx-auto transition duration-300 min-h-full w-full grid grow relative transition duration-300 fade-in "></div>
+    <div class="home-page active-page p-2 container mx-auto transition duration-300 min-h-full w-full grid grow relative transition duration-300 fade-in "></div>
     <div class="game-page p-2  transition duration-300 fade-in">
         <section class="questions-title container mx-auto  my-2">
         </section>
