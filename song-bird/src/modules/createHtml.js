@@ -20,7 +20,7 @@ export async function createHtml() {
     language.condition ? nextLevel = 'Next level' : nextLevel = 'Следующий уровень'
 
     let pageHtml = `
-<header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header bg-blue-900 bg-opacity-25">
+<header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header bg-blue-900 bg-opacity-25 z-50">
     <nav class="container mx-auto px-2">
         <div class="logo-button  w-full flex justify-between">
             <div class="logo"><img class="w-[50vw] sm:w-[220px]" src="public/images/logo.png" alt="song bird application logo"></div>
@@ -34,22 +34,20 @@ export async function createHtml() {
             
         </div>
         <ul class=" text-blue-900 font-bold text-xs sm:text-sm grid grid-cols-3 gap-1 sm:gap-2">
-            <li class="w-full  my-1 sm:my-0 go-home border border-white  active-header-tab cursor-pointer  bg-white   rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:text-white cursor-pointer  ">
+            <li class="whitespace-nowrap w-full  my-1 sm:my-0 go-home border border-white  active-header-tab cursor-pointer  bg-white   rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:text-white cursor-pointer  ">
                 ${homeBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  py-2 px-4 text-lg flex items-center justify-center ">
+            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center ">
                 <span class="mr-2">${resultatBtn}:</span> <span class="result">0</span>
             </li>
-            <!--<li class="w-full sm:w-[unset] my-1 sm:my-0 go-result   bg-blue-50 bg-opacity-75 rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-width hover:bg-opacity-100 hover:text-gray-900 cursor-pointer  hover:shadow-blue-700/50">
-                ${yourResultsBtn}
-            </li>-->
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
+            
+            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
                 ${gameResultsBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 border border-white  hover:text-white   cursor-pointer  ">
+            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 border border-white  hover:text-white   cursor-pointer  ">
                 ${galleryBtn}
             </li>
-            <li class="w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-white  rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 hover:text-white  hover:bg-blue-700 cursor-pointer  border border-white      ">
+            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 go-game  bg-white  rounded  min-h-full shadow-lg  p-2  flex items-center justify-center   transition duration-300 hover:text-white  hover:bg-blue-700 cursor-pointer  border border-white      ">
                 ${startGameBtn}
             </li>
         </ul>
@@ -75,7 +73,7 @@ export async function createHtml() {
     <div class="hidden results-page p-2  container mx-auto   transition duration-300 fade-in"></div>
     <div class="gallery-page p-2  container mx-auto px-2  min-h-full w-full grid grow relative transition duration-300 fade-in  p-2 grid my-2"></div>
 </main>
-<footer class="p-2  container-fluid  bg-blue-900 bg-opacity-25">
+<footer class="p-2  container-fluid  bg-blue-900 bg-opacity-25 z-50">
     <div class="container mx-auto flex justify-between items-center font-bold text-blue-900 flex-wrap md:flex-nowrap px-2 text-sm">
         <p class="w-full md:w-[unset] mb-0 bg-white  bg-opacity-100 px-1 py-2 hover:bg-opacity-100 transition duration-300 text-center ">
             <span class="mr-2">© 2022.</span>

@@ -1,5 +1,5 @@
 import {language} from "../index";
-export default function (homeSelector) {
+export default async function (homeSelector) {
 
     document.addEventListener('DOMContentLoaded', async () => {
 
@@ -21,7 +21,7 @@ language.condition ? homeTitle = 'Welcome to game!' : homeTitle = 'Добро п
 language.condition ? homeSubtitle = '<h2>Immerse yourself in the world of a variety of bird voices!</h2>\n  <h2>Take an exciting quiz and find out how many bird songs you can guess!</h2>' : homeSubtitle = '<h2>Окунитесь в мир разнообразия птичьих голосов!</h2>\n          <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>'
 language.condition ? homeInviting = 'For starting game press button <strong class="start-game-button">"Start game"</strong>' : homeInviting = 'Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong>'
 
-        homeSelector.innerHTML = `
+      homeSelector.innerHTML = `
 <div class="rounded-lg sm:pt-4 my-4 relative sm:overflow-hidden h-full sm:h-[60vh] ">
      <video class="video-box z-10 relative rounded-lg"  width="100%" height="100%"  preload="auto" autoplay loop muted>
         <source class=" rounded-lg " src="public/video/birds.mp4" type="video/mp4">
@@ -39,18 +39,24 @@ language.condition ? homeInviting = 'For starting game press button <strong clas
 </div>
         
 `
-        let videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
-        // document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
-        window.onresize = () => {
-            if (document.documentElement.clientWidth > 639 ) {
-                videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
-                if(videoHeight !== 0) {
-                    document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
-                }
-            } else {
-                document.querySelector('.video-div').style.cssText = ``
+        let videoHeight
+        setTimeout(()=>{
+            videoHeight =  document.querySelector('.video-box').getBoundingClientRect().height
+            if(videoHeight !== 0) {
+                document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
             }
-        }
+            window.onresize = () => {
+                if (document.documentElement.clientWidth > 639 ) {
+                    videoHeight = document.querySelector('.video-box').getBoundingClientRect().height
+                    if(videoHeight !== 0) {
+                        document.querySelector('.video-div').style.cssText = `height: ${videoHeight}px`
+                    }
+                } else {
+                    document.querySelector('.video-div').style.cssText = ``
+                }
+            }
+        },100)
+
 
         document.querySelector('.start-game-button').addEventListener('mousemove', () => {
             document.querySelector('.go-game').style.cssText = 'transition: .15s ease-in-out ;transform: scale(.8)'
