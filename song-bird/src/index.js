@@ -19,16 +19,14 @@ export let results = {
 // по умолчанию язык русский
 export let language = {}
 //кнопка переключения
-if(localStorage.getItem('language')){
+if (localStorage.getItem('language')) {
     language.condition = true
     document.querySelector('body').classList.add('font-bigger')
-}else{
+} else {
     language.condition = false
 }
 
- createHtml()
-
-
+createHtml()
 
 
 let isPreviousResult = false
@@ -69,8 +67,12 @@ function startHomePage() {
     results.result = 0
     goHome.classList.add('active-header-tab')
     //goResult.classList.remove('hidden')
-    goPreviousResult.classList.remove('active-header-tab')
-    goPreviousResult.classList.remove('hidden')
+    //goPreviousResult.classList.remove('active-header-tab')
+    //goPreviousResult.classList.remove('hidden')
+    if (isPreviousResult) {
+        goPreviousResult.classList.remove('active-header-tab')
+        goPreviousResult.classList.remove('hidden')
+    }
     resultPage.classList.add('hidden')
     resultPage.innerHTML = ''
     goGame.classList.remove('active-header-tab')
@@ -94,7 +96,7 @@ export function startGamePage() {
     goGallery.classList.remove('hidden')
     results.result = 0
     goGame.classList.add('active-header-tab')
-   //goGame.classList.add('hidden')
+    //goGame.classList.add('hidden')
     galleryButton.classList.add('hidden')
     gamePage.classList.remove('hidden')
     galleryPage.classList.add('hidden')
@@ -160,30 +162,30 @@ goGallery.addEventListener('click', startGallery)
 function startGallery() {
     langSection.classList.add('hidden')
     goGallery.classList.add('hidden')
-        results.result = 0
-        galleryPage.classList.remove('hidden')
+    results.result = 0
+    galleryPage.classList.remove('hidden')
 
-        galleryButton.classList.remove('hidden')
-        galleryButton.classList.add('active-header-tab')
-        goGame.classList.remove('active-header-tab')
-        goGame.classList.remove('hidden')
-        goHome.classList.remove('active-header-tab')
-        //goResult.classList.add('hidden')
-        //goResult.classList.remove('active-header-tab')
+    galleryButton.classList.remove('hidden')
+    galleryButton.classList.add('active-header-tab')
+    goGame.classList.remove('active-header-tab')
+    goGame.classList.remove('hidden')
+    goHome.classList.remove('active-header-tab')
+    //goResult.classList.add('hidden')
+    //goResult.classList.remove('active-header-tab')
 
-        goPreviousResult.classList.add('hidden')
+    goPreviousResult.classList.add('hidden')
 
-        gamePage.classList.add('hidden')
-        homePage.classList.add('hidden')
-        resultPage.classList.add('hidden')
-        gameResultBox.classList.add('hidden')
+    gamePage.classList.add('hidden')
+    homePage.classList.add('hidden')
+    resultPage.classList.add('hidden')
+    gameResultBox.classList.add('hidden')
 
-        eventsObject.isHomePage = false
-        eventsObject.isGamePage = false
-        eventsObject.isResultPage = false
-        eventsObject.isGalleryPage = true
+    eventsObject.isHomePage = false
+    eventsObject.isGamePage = false
+    eventsObject.isResultPage = false
+    eventsObject.isGalleryPage = true
 
-        app()
+    app()
 
 }
 

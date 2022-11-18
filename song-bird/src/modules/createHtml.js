@@ -2,22 +2,15 @@ import {language} from "../index";
 
 export async function createHtml() {
 
-    let homeBtn = ''
-    let resultatBtn = ''
-    let yourResultsBtn = ''
-    let gameResultsBtn = ''
-    let galleryBtn = ''
-    let startGameBtn = ''
-    let langBtn = ''
-    let nextLevel = ''
-    language.condition ? homeBtn = 'Home' : homeBtn = 'Главная'
-    language.condition ? resultatBtn = 'Result' : resultatBtn = 'Результат'
-    language.condition ? yourResultsBtn = 'Your results' : yourResultsBtn = 'Ваши результаты'
-    language.condition ? gameResultsBtn = 'Game results' : gameResultsBtn = 'Результат'
-    language.condition ? galleryBtn = 'Birds gallery' : galleryBtn = 'Галерея птиц'
-    language.condition ? startGameBtn = 'Start game' : startGameBtn = 'Начать игру'
-    language.condition ? langBtn = 'Language' : langBtn = 'Язык'
-    language.condition ? nextLevel = 'Next level' : nextLevel = 'Следующий уровень'
+    let homeBtn = language.condition ? 'Home' : 'Главная'
+    let resultBtn = language.condition ? 'Result' : 'Результат'
+    let yourResultsBtn = language.condition ? 'Your results' : 'Ваши результаты'
+    let gameResultsBtn = language.condition ? 'Game results' : 'Результат'
+    let galleryBtn = language.condition ? 'Birds gallery' : 'Галерея птиц'
+    let startGameBtn = language.condition ? 'Start game' : 'Начать игру'
+    let langBtn = language.condition ? 'Language' : 'Язык'
+    let nextLevel = language.condition ? 'Next level' : 'Следующий уровень'
+
 
     let pageHtml = `
 <header class="py-2 container-fluid  border-3 border-gray-200  drop-shadow-lg header bg-blue-900 bg-opacity-25 z-50">
@@ -38,10 +31,10 @@ export async function createHtml() {
                 ${homeBtn}
             </li>
             <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center ">
-                <span class="mr-2">${resultatBtn}:</span> <span class="result">0</span>
+                <span class="mr-2">${resultBtn}:</span> <span class="result">0</span>
             </li>
             
-            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
+            <li class="hidden whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
                 ${gameResultsBtn}
             </li>
             <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 gallery-button hidden  bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 hover:bg-blue-700 border border-white  hover:text-white   cursor-pointer  ">
@@ -97,21 +90,20 @@ export async function createHtml() {
 
     // language switcher
 
-
     let ruBtn = document.querySelector('.ru-language')
     let enBtn = document.querySelector('.en-language')
     ruBtn.addEventListener('click', changeLanguage)
     enBtn.addEventListener('click', changeLanguage)
 
-    if(language.condition){
+    if (language.condition) {
         enBtn.classList.add('active')
         ruBtn.classList.remove('active')
-    }else{
+    } else {
         enBtn.classList.remove('active')
         ruBtn.classList.add('active')
     }
 
-    function changeLanguage(e)  {
+    function changeLanguage(e) {
         let lang = e.target.dataset.lang
         if (lang === 'en') {
             language.condition = true

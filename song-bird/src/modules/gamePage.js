@@ -63,8 +63,8 @@ export default function () {
 
         let counter = 5
         let birdsList = null
-        let playerMessage = ''
-        language.condition ? playerMessage = '<p>Listen to the player. Select a bird from the list</p>' : playerMessage = '<p>Послушайте плеер. Выберите птицу из списка</p>'
+        let playerMessage = language.condition ?  '<p>Listen to the player. Select a bird from the list</p>' :  '<p>Послушайте плеер. Выберите птицу из списка</p>'
+
 
         const playerSection = document.querySelector('.player-section')
         const solutionSection = document.querySelector('.solution')
