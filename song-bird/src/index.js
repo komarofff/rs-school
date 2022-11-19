@@ -96,7 +96,7 @@ export function startGamePage() {
     goGallery.classList.remove('hidden')
     results.result = 0
     goGame.classList.add('active-header-tab')
-    //goGame.classList.add('hidden')
+    goGame.classList.add('hidden')
     galleryButton.classList.add('hidden')
     gamePage.classList.remove('hidden')
     galleryPage.classList.add('hidden')
@@ -136,7 +136,7 @@ export function startResultPage(canSaveResults) {
     }
     goGallery.classList.remove('hidden')
     goGame.classList.remove('active-header-tab')
-    //goGame.classList.add('hidden')
+    goGame.classList.remove('hidden')
     goHome.classList.remove('active-header-tab')
     //goResult.classList.remove('hidden')
     goPreviousResult.classList.add('active-header-tab')

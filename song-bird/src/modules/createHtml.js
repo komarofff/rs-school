@@ -7,7 +7,7 @@ export async function createHtml() {
     let yourResultsBtn = language.condition ? 'Your results' : 'Ваши результаты'
     let gameResultsBtn = language.condition ? 'Game results' : 'Результат'
     let galleryBtn = language.condition ? 'Birds gallery' : 'Галерея птиц'
-    let startGameBtn = language.condition ? 'Start game' : 'Начать игру'
+    let startGameBtn = language.condition ? 'Game' : 'Игра'
     let langBtn = language.condition ? 'Language' : 'Язык'
     let nextLevel = language.condition ? 'Next level' : 'Следующий уровень'
 
