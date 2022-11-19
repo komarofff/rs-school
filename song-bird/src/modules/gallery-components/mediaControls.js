@@ -22,7 +22,7 @@ export function mediaControls() {
 
     mediasArray = galleryMediaObjects.mediasArray
     // if(mediasArray) {
-    //console.log('mediasArray', mediasArray)
+   console.log('mediasArray', mediasArray)
     let gallery = document.querySelector('.gallery-page')
     gallery.addEventListener('click', findSelector)
     gallery.addEventListener('change', findSelector)
@@ -72,6 +72,7 @@ export function mediaControls() {
         if (id) {
             let className = mediasArray[id].className
             let player = mediasArray[id].player
+            player.muted = false
             let selector = mediasArray[id].selector
             let playTime = document.querySelector(`.${className}`).querySelector('.play-time')
             let mediaTime = document.querySelector(`.${className}`).querySelector('.media-time')

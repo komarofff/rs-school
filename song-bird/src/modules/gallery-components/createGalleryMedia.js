@@ -7,6 +7,8 @@ export async function createGalleryMedia(mediaUrl, selector,className2) {
     let currentMediaInPlayer
     try {
         currentMediaInPlayer = await new Audio(mediaUrl)
+        currentMediaInPlayer.muted = true
+        currentMediaInPlayer.autoplay = false
     } catch (e) {
         console.log('error-', e)
     }
