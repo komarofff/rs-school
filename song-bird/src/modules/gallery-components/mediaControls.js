@@ -22,7 +22,7 @@ export function mediaControls() {
 
     mediasArray = galleryMediaObjects.mediasArray
     // if(mediasArray) {
-   console.log('mediasArray', mediasArray)
+  // console.log('mediasArray', mediasArray)
     let gallery = document.querySelector('.gallery-page')
     gallery.addEventListener('click', findSelector)
     gallery.addEventListener('change', findSelector)
