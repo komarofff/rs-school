@@ -23,6 +23,11 @@ export default function () {
 
     //let mediaObject.mediasArray = []
     //let result = 0
+    let questionsBox = document.querySelector('.questions-title')
+    let resultBtn = language.condition ? 'Result' : 'Результат'
+    let resultsPlace = `<div class="whitespace-nowrap  my-2  game-result-box text-xl  w-full font-bold   p-2  flex items-center md:justify-end justify-center">\n 
+     <span class="mr-2">${resultBtn}:</span> <span class="result">0</span>\n            </div>`
+    questionsBox.innerHTML = resultsPlace
     let startLevel = 0
     let categories
     const goToHome = document.querySelector('.go-home')

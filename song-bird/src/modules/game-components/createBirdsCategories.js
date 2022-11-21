@@ -7,7 +7,7 @@ export function createBirdsCategories() {
        language.condition ? categoriesList.push(birdsData[i][0].titleLat) : categoriesList.push(birdsData[i][0].titleRus)
     }
     let questionsBox = document.querySelector('.questions-title')
-    questionsBox.innerHTML = ''
+   // questionsBox.innerHTML = ''
     let categoryBox = document.createElement('div')
     //categoryBox.className = 'flex justify-between items-center transition duration-300 categories text-sm'
     categoryBox.className = 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-2 items-center transition duration-300 categories text-base font-bold'

@@ -52,7 +52,7 @@ const goGallery = document.querySelector('.go-gallery')
 //const goResult = document.querySelector('.go-result')
 
 const goPreviousResult = document.querySelector('.go-previously-result')
-const gameResultBox = document.querySelector('.game-result-box')
+//const gameResultBox = document.querySelector('.game-result-box')
 
 goHome.addEventListener('click', startHomePage)
 logoButton.addEventListener('click', startHomePage)
@@ -78,7 +78,7 @@ function startHomePage() {
     goGame.classList.remove('active-header-tab')
     goGame.classList.remove('hidden')
     homePage.classList.remove('hidden')
-    gameResultBox.classList.add('hidden')
+    //gameResultBox.classList.add('hidden')
     galleryButton.classList.add('hidden')
     galleryPage.classList.add('hidden')
     galleryPage.innerHTML = ''
@@ -106,7 +106,7 @@ export function startGamePage() {
 
     goPreviousResult.classList.add('hidden')
 
-    gameResultBox.classList.remove('hidden')
+    //gameResultBox.classList.remove('hidden')
 
     resultPage.classList.add('hidden')
     resultPage.innerHTML = ''
@@ -144,12 +144,12 @@ export function startResultPage(canSaveResults) {
     galleryButton.classList.add('hidden')
     galleryPage.classList.add('hidden')
     galleryPage.innerHTML = ''
-    gameResultBox.classList.remove('hidden')
+    //gameResultBox.classList.remove('hidden')
     goPreviousResult.classList.remove('hidden')
 
     homePage.classList.add('hidden')
     resultPage.classList.remove('hidden')
-    gameResultBox.classList.add('hidden')
+    //gameResultBox.classList.add('hidden')
     eventsObject.isHomePage = false
     eventsObject.isGamePage = false
     eventsObject.isResultPage = true
@@ -178,7 +178,7 @@ function startGallery() {
     gamePage.classList.add('hidden')
     homePage.classList.add('hidden')
     resultPage.classList.add('hidden')
-    gameResultBox.classList.add('hidden')
+    //gameResultBox.classList.add('hidden')
 
     eventsObject.isHomePage = false
     eventsObject.isGamePage = false

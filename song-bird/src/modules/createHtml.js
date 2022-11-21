@@ -29,10 +29,7 @@ export async function createHtml() {
         <ul class=" text-blue-900 font-bold text-xs sm:text-sm grid grid-cols-3 gap-1 sm:gap-2">
             <li class="whitespace-nowrap w-full  my-1 sm:my-0 go-home border border-white  active-header-tab cursor-pointer  bg-white   rounded  min-h-full  shadow-lg  p-2  flex items-center justify-center  transition duration-300 relative hover:bg-blue-700 hover:text-white cursor-pointer  ">
                 ${homeBtn}
-            </li>
-            <li class="whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 hidden game-result-box   bg-white rounded  min-h-full shadow-lg  p-2  flex items-center justify-center ">
-                <span class="mr-2">${resultBtn}:</span> <span class="result">0</span>
-            </li>
+            </li>         
             
             <li class="hidden whitespace-nowrap w-full sm:w-[unset] my-1 sm:my-0 go-previously-result   bg-white rounded min-h-full shadow-lg  p-2  flex items-center justify-center  transition duration-300 border border-white hover:bg-blue-700  hover:text-white    cursor-pointer  ">
                 ${gameResultsBtn}

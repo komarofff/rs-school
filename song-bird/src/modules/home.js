@@ -15,7 +15,7 @@ export default async function (homeSelector) {
         }
 let homeTitle= language.condition ? 'Welcome to game!' :  'Добро пожаловать в игру!'
 let homeSubtitle=language.condition ? '<h2>Immerse yourself in the world of a variety of bird voices!</h2>\n  <h2>Take an exciting quiz and find out how many bird songs you can guess!</h2>' :  '<h2>Окунитесь в мир разнообразия птичьих голосов!</h2>\n          <h2>Пройди увлекательную викторину и узнай сколько птичьих песен ты сможешь угадать!</h2>'
-let homeInviting= language.condition ?  'For starting game press button <strong class="start-game-button">"Start game"</strong>' :  'Для старта игры нажми кнопку <strong class="start-game-button">"Начать игру"</strong>'
+let homeInviting= language.condition ?  'For starting game press button <strong class="start-game-button">"Game"</strong>' :  'Для старта игры нажми кнопку <strong class="start-game-button">"Игра"</strong>'
 
       homeSelector.innerHTML = `
 <div class="rounded-lg sm:pt-4 my-4 relative sm:overflow-hidden h-full sm:h-[60vh] ">
