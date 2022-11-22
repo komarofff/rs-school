@@ -39,6 +39,8 @@ export default function (resultSelector, cansaveResults) {
 
         if (results.result < 30) {
             // формируем кнопку рестарта игры
+            //console.log('results.result ',results.result )
+            results.result = 0
             resultMessage = `
       <p>${messageMax}</p>
       <p class="start-game-again font-bold transition duration-300 rounded p-2  my-3 cursor-pointer   text-xl flex justify-center items-center shadow-xl bg-blue-700 text-white border border-blue-700 hover:bg-white hover:text-blue-700">

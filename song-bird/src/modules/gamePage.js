@@ -131,12 +131,17 @@ export default function () {
         const taskList = document.querySelector('.list')
         let resultId = null
 
-        taskList.addEventListener('click', (e) => {
+        taskList.addEventListener('click', checkTask)
+        function checkTask(e){
             // console.log(e.target)
             if (e.target.dataset.name) {
                 if (e.target.dataset.name === finishData.species && !isFinishStage) {
-                    //  console.log('правильно || здесь надо подготовить очки для следующей игры')
+                    console.log('правильно || здесь надо подготовить очки для следующей игры')
+                    console.log('results.result',results.result)
                     results.result += counter
+                    console.log('results.result',results.result)
+
+                   resultPlace = document.querySelector('.result')
                     resultPlace.innerHTML = results.result
                     e.target.classList.add('success')
                     // если правильно ответили
@@ -163,7 +168,8 @@ export default function () {
                         eventsObject.isGamePage = false
                         eventsObject.isResultPage = true
                         eventsObject.isGalleryPage = false
-
+                        isFinishStage = false
+                        taskList.removeEventListener('click', checkTask)
                         startResultPage(true)
                     }
                     // включаем переход на новую вкладку
@@ -174,7 +180,7 @@ export default function () {
                     birdsList.arr.forEach((el, id) => {
                         if (el.species === e.target.dataset.name) {
                             if (isFinishStage) {
-                                //console.log('не правильно и игра  ЗАКОНЧЕНА  ')
+                                console.log('не правильно и игра  ЗАКОНЧЕНА  ')
                                 mediaObject.mediasArray.forEach(el => el.pause())
                                 mediaObject.startPlayStopButton.src = "public/images/play-button.png"
                                 if (mediaObject.answerPlayStopButton) {
@@ -187,10 +193,11 @@ export default function () {
                                     if (idx > 0) element.pause()
 
                                 })
-                                // console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
+                                console.log('не правильно и игра НЕ ЗАКОНЧЕНА || здесь отнимаем 1 балл за неправильный ответ')
 
                                 if (counter > 0 && !e.target.classList.contains('error')) {
                                     counter--
+                                    console.log('counter=',counter)
                                 }
                                 e.target.classList.add('error')
                                 // если выбрали правильно - то отключаем звук и смену значков (правильно - неправильно перед названием в списке)
@@ -204,7 +211,7 @@ export default function () {
 
                 }
             }
-        })
+        }
 
         async function showSolutionPlayer(data) {
             // плеер зоны решения
